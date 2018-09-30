@@ -5,7 +5,6 @@ Adding support of junit4 test rule to bmunit framework.
 TODO:
 - Adding static methods which invokes methods of class org.jboss.byteman.rule.helper.Helper which operate on static collections, like counters, lock etc.
     1. st.bmunit.extension.BMUnitUtils#joinEnlist(java.lang.Object)
-    2. st.bmunit.extension.BMUnitUtils#joinWait(Object, int, long)
     3. st.bmunit.extension.BMUnitUtils#createCounter(Object)
     4. st.bmunit.extension.BMUnitUtils#deleteCounter(Object)
     5. st.bmunit.extension.BMUnitUtils#incrementCounter(Object)
