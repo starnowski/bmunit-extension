@@ -2,7 +2,7 @@ package st.bmunit.extension
 
 import spock.lang.Specification
 
-class BMUnitUtilsTest extends Specification {
+class BMUnitUtilsJoinWaitMethodTest extends Specification {
 
     def "should suspend thread when expected 'joiner' exists and other thread reached joiner" ()
     {
