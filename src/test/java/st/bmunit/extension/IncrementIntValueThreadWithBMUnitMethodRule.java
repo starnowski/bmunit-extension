@@ -32,7 +32,7 @@ public class IncrementIntValueThreadWithBMUnitMethodRule {
         for (int i = 0; i < expectedCount; i++) {
             new IncrementIntValueThread(atomicInteger).start();
         }
-        joinWait("IncrementIntValueThreadWithBMUnitMethodRule.shouldWaitUntilAllThreadsCompleted", expectedCount);
+        joinWait("IncrementIntValueThreadWithBMUnitMethodRule.shouldWaitUntilAllThreadsCompleted", expectedCount, 60000);
 
         // then
         assertEquals(expectedCount, atomicInteger.get());
@@ -64,7 +64,7 @@ public class IncrementIntValueThreadWithBMUnitMethodRule {
         }
         int threadsStarterBeforeReleaseCount = readCounter("IncrementIntValueThreadWithBMUnitMethodRule.releaseThreadsCount");
         rendezvous("IncrementIntValueThreadWithBMUnitMethodRule.suspendThreadsAtBeginning");
-        joinWait("IncrementIntValueThreadWithBMUnitMethodRule.waitUntilAllThreadsCompleted", expectedCount);
+        joinWait("IncrementIntValueThreadWithBMUnitMethodRule.waitUntilAllThreadsCompleted", expectedCount, 60000);
         int threadsReleasedCount = readCounter("IncrementIntValueThreadWithBMUnitMethodRule.releaseThreadsCount");
 
         // then
