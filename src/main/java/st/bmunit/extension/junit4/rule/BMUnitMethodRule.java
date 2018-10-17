@@ -1,4 +1,4 @@
-package st.bmunit.extension;
+package st.bmunit.extension.junit4.rule;
 
 import org.jboss.byteman.contrib.bmunit.*;
 import org.junit.rules.MethodRule;
@@ -18,7 +18,7 @@ public class BMUnitMethodRule implements MethodRule{
         return statement;
     }
 
-    protected Statement addMethodSingleRuleLoader(final Statement statement, FrameworkMethod method, final Class testClass) {
+    private Statement addMethodSingleRuleLoader(final Statement statement, FrameworkMethod method, final Class testClass) {
         BMRule annotation = method.getAnnotation(BMRule.class);
         if (annotation == null) {
             return statement;
@@ -41,7 +41,7 @@ public class BMUnitMethodRule implements MethodRule{
         }
     }
 
-    protected Statement addMethodMultiRuleLoader(final Statement statement, FrameworkMethod method, final Class testClass) {
+    private Statement addMethodMultiRuleLoader(final Statement statement, FrameworkMethod method, final Class testClass) {
         BMRules annotation = method.getAnnotation(BMRules.class);
         if (annotation == null) {
             return statement;
@@ -64,7 +64,7 @@ public class BMUnitMethodRule implements MethodRule{
         }
     }
 
-    protected Statement addMethodConfigLoader(final Statement statement, FrameworkMethod method, final Class testClass) {
+    private Statement addMethodConfigLoader(final Statement statement, FrameworkMethod method, final Class testClass) {
         final BMUnitConfig classAnnotation = (BMUnitConfig) testClass.getAnnotation(BMUnitConfig.class);
         final BMUnitConfig annotation = method.getAnnotation(BMUnitConfig.class);
         final Method testMethod = method.getMethod();

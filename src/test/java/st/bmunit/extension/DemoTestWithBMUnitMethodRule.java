@@ -4,6 +4,7 @@ import org.jboss.byteman.contrib.bmunit.BMRule;
 import org.jboss.byteman.contrib.bmunit.BMRules;
 import org.junit.Rule;
 import org.junit.Test;
+import st.bmunit.extension.junit4.rule.BMUnitMethodRule;
 
 import static org.junit.Assert.assertEquals;
 import static st.bmunit.extension.util.Demo.returnOne;
