@@ -10,6 +10,7 @@
     <modules>
         <module>junit4-rule</module>
         <module>utils</module>
+        <module>junit4-rule-demo</module>
     </modules>
     <packaging>pom</packaging>
 
