@@ -1,4 +1,4 @@
-package st.bmunit.extension.util;
+package st.bmunit.extension.junit4.rule.demo;
 
 public class Demo {
 
