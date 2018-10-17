@@ -10,7 +10,7 @@ import st.bmunit.extension.util.IncrementIntValueThread;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.junit.Assert.assertEquals;
-import static st.bmunit.extension.BMUnitUtils.*;
+import static st.bmunit.extension.utils.BMUnitUtils.*;
 
 @RunWith(BMUnitRunner.class)
 public class IncrementIntValueThreadWithBMUnitRunner {

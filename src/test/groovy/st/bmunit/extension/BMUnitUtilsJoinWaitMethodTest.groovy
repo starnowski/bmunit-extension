@@ -1,6 +1,7 @@
 package st.bmunit.extension
 
 import spock.lang.Specification
+import st.bmunit.extension.utils.BMUnitUtils
 
 class BMUnitUtilsJoinWaitMethodTest extends Specification {
 
