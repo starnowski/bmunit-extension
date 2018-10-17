@@ -1,11 +1,10 @@
-package st.bmunit.extension;
+package st.bmunit.extension.junit4.rule.demo;
 
 import org.jboss.byteman.contrib.bmunit.BMRule;
 import org.jboss.byteman.contrib.bmunit.BMRules;
 import org.jboss.byteman.contrib.bmunit.BMUnitRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import st.bmunit.extension.util.IncrementIntValueThread;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -17,7 +16,7 @@ public class IncrementIntValueThreadWithBMUnitRunner {
 
     @Test
     @BMRule(name = "should wait until all threads completed",
-            targetClass = "st.bmunit.extension.util.IncrementIntValueThread",
+            targetClass = "st.bmunit.extension.junit4.rule.demo.IncrementIntValueThread",
             targetMethod = "run",
             targetLocation = "AT EXIT",
             action = "joinEnlist(\"IncrementIntValueThreadWithBMUnitRunner.shouldWaitUntilAllThreadsCompleted\")")
@@ -42,12 +41,12 @@ public class IncrementIntValueThreadWithBMUnitRunner {
     @Test
     @BMRules(rules = {
             @BMRule(name = "should suspend all threads",
-                    targetClass = "st.bmunit.extension.util.IncrementIntValueThread",
+                    targetClass = "st.bmunit.extension.junit4.rule.demo.IncrementIntValueThread",
                     targetMethod = "run",
                     targetLocation = "AT ENTRY",
                     action = "rendezvous(\"IncrementIntValueThreadWithBMUnitRunner.suspendThreadsAtBeginning\")"),
             @BMRule(name = "should wait until all threads completed",
-                    targetClass = "st.bmunit.extension.util.IncrementIntValueThread",
+                    targetClass = "st.bmunit.extension.junit4.rule.demo.IncrementIntValueThread",
                     targetMethod = "run",
                     targetLocation = "AT EXIT",
                     action = "incrementCounter(\"IncrementIntValueThreadWithBMUnitRunner.releaseThreadsCount\");joinEnlist(\"IncrementIntValueThreadWithBMUnitRunner.waitUntilAllThreadsCompleted\")")})

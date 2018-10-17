@@ -1,11 +1,10 @@
-package st.bmunit.extension;
+package st.bmunit.extension.junit4.rule.demo;
 
 import org.jboss.byteman.contrib.bmunit.BMRule;
 import org.jboss.byteman.contrib.bmunit.BMRules;
 import org.junit.Rule;
 import org.junit.Test;
 import st.bmunit.extension.junit4.rule.BMUnitMethodRule;
-import st.bmunit.extension.util.IncrementIntValueThread;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -19,7 +18,7 @@ public class IncrementIntValueThreadWithBMUnitMethodRule {
 
     @Test
     @BMRule(name = "should wait until all threads completed",
-            targetClass = "st.bmunit.extension.util.IncrementIntValueThread",
+            targetClass = "st.bmunit.extension.junit4.rule.demo.IncrementIntValueThread",
             targetMethod = "run",
             targetLocation = "AT EXIT",
             action = "joinEnlist(\"IncrementIntValueThreadWithBMUnitMethodRule.shouldWaitUntilAllThreadsCompleted\")")
@@ -42,12 +41,12 @@ public class IncrementIntValueThreadWithBMUnitMethodRule {
     @Test
     @BMRules(rules = {
             @BMRule(name = "should suspend all threads",
-                    targetClass = "st.bmunit.extension.util.IncrementIntValueThread",
+                    targetClass = "st.bmunit.extension.junit4.rule.demo.IncrementIntValueThread",
                     targetMethod = "run",
                     targetLocation = "AT ENTRY",
                     action = "rendezvous(\"IncrementIntValueThreadWithBMUnitMethodRule.suspendThreadsAtBeginning\")"),
             @BMRule(name = "should wait until all threads completed",
-                    targetClass = "st.bmunit.extension.util.IncrementIntValueThread",
+                    targetClass = "st.bmunit.extension.junit4.rule.demo.IncrementIntValueThread",
                     targetMethod = "run",
                     targetLocation = "AT EXIT",
                     action = "incrementCounter(\"IncrementIntValueThreadWithBMUnitMethodRule.releaseThreadsCount\");joinEnlist(\"IncrementIntValueThreadWithBMUnitMethodRule.waitUntilAllThreadsCompleted\")")})
