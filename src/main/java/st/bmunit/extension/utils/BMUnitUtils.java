@@ -1,4 +1,4 @@
-package st.bmunit.extension;
+package st.bmunit.extension.utils;
 
 public class BMUnitUtils {
 
