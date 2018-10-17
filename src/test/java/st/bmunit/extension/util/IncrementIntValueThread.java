@@ -9,6 +9,7 @@ public class IncrementIntValueThread extends Thread{
 
     public IncrementIntValueThread(AtomicInteger integerValue) {
         this.integerValue = integerValue;
+        setDaemon(true);
     }
 
     @Override
