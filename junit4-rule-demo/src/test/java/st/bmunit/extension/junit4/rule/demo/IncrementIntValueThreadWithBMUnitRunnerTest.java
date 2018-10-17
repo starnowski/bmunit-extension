@@ -12,27 +12,27 @@ import static org.junit.Assert.assertEquals;
 import static st.bmunit.extension.utils.BMUnitUtils.*;
 
 @RunWith(BMUnitRunner.class)
-public class IncrementIntValueThreadWithBMUnitRunner {
+public class IncrementIntValueThreadWithBMUnitRunnerTest {
 
     @Test
     @BMRule(name = "should wait until all threads completed",
             targetClass = "st.bmunit.extension.junit4.rule.demo.IncrementIntValueThread",
             targetMethod = "run",
             targetLocation = "AT EXIT",
-            action = "joinEnlist(\"IncrementIntValueThreadWithBMUnitRunner.shouldWaitUntilAllThreadsCompleted\")")
+            action = "joinEnlist(\"IncrementIntValueThreadWithBMUnitRunnerTest.shouldWaitUntilAllThreadsCompleted\")")
     public void shouldWaitUntilAllThreadsCompleted()
     {
         // given
         int expectedCount = 30;
         AtomicInteger atomicInteger = new AtomicInteger(0);
-        createJoin("IncrementIntValueThreadWithBMUnitRunner.shouldWaitUntilAllThreadsCompleted", expectedCount);
+        createJoin("IncrementIntValueThreadWithBMUnitRunnerTest.shouldWaitUntilAllThreadsCompleted", expectedCount);
 
         // when
         for (int i = 0; i < expectedCount; i++)
         {
             new IncrementIntValueThread(atomicInteger).start();
         }
-        joinWait("IncrementIntValueThreadWithBMUnitRunner.shouldWaitUntilAllThreadsCompleted", expectedCount);
+        joinWait("IncrementIntValueThreadWithBMUnitRunnerTest.shouldWaitUntilAllThreadsCompleted", expectedCount);
 
         // then
         assertEquals(expectedCount, atomicInteger.get());
@@ -44,28 +44,28 @@ public class IncrementIntValueThreadWithBMUnitRunner {
                     targetClass = "st.bmunit.extension.junit4.rule.demo.IncrementIntValueThread",
                     targetMethod = "run",
                     targetLocation = "AT ENTRY",
-                    action = "rendezvous(\"IncrementIntValueThreadWithBMUnitRunner.suspendThreadsAtBeginning\")"),
+                    action = "rendezvous(\"IncrementIntValueThreadWithBMUnitRunnerTest.suspendThreadsAtBeginning\")"),
             @BMRule(name = "should wait until all threads completed",
                     targetClass = "st.bmunit.extension.junit4.rule.demo.IncrementIntValueThread",
                     targetMethod = "run",
                     targetLocation = "AT EXIT",
-                    action = "incrementCounter(\"IncrementIntValueThreadWithBMUnitRunner.releaseThreadsCount\");joinEnlist(\"IncrementIntValueThreadWithBMUnitRunner.waitUntilAllThreadsCompleted\")")})
+                    action = "incrementCounter(\"IncrementIntValueThreadWithBMUnitRunnerTest.releaseThreadsCount\");joinEnlist(\"IncrementIntValueThreadWithBMUnitRunnerTest.waitUntilAllThreadsCompleted\")")})
     public void shouldSuspendAllThreadsAtBeginningThenWaitUntilAllThreadsCompleted() {
         // given
         int expectedCount = 30;
         AtomicInteger atomicInteger = new AtomicInteger(0);
-        createRendezvous("IncrementIntValueThreadWithBMUnitRunner.suspendThreadsAtBeginning", expectedCount + 1);
-        createJoin("IncrementIntValueThreadWithBMUnitRunner.waitUntilAllThreadsCompleted", expectedCount);
-        createCounter("IncrementIntValueThreadWithBMUnitRunner.releaseThreadsCount", 0);
+        createRendezvous("IncrementIntValueThreadWithBMUnitRunnerTest.suspendThreadsAtBeginning", expectedCount + 1);
+        createJoin("IncrementIntValueThreadWithBMUnitRunnerTest.waitUntilAllThreadsCompleted", expectedCount);
+        createCounter("IncrementIntValueThreadWithBMUnitRunnerTest.releaseThreadsCount", 0);
 
         // when
         for (int i = 0; i < expectedCount; i++) {
             new IncrementIntValueThread(atomicInteger).start();
         }
-        int threadsStarterBeforeReleaseCount = readCounter("IncrementIntValueThreadWithBMUnitRunner.releaseThreadsCount");
-        rendezvous("IncrementIntValueThreadWithBMUnitRunner.suspendThreadsAtBeginning");
-        joinWait("IncrementIntValueThreadWithBMUnitRunner.waitUntilAllThreadsCompleted", expectedCount);
-        int threadsReleasedCount = readCounter("IncrementIntValueThreadWithBMUnitRunner.releaseThreadsCount");
+        int threadsStarterBeforeReleaseCount = readCounter("IncrementIntValueThreadWithBMUnitRunnerTest.releaseThreadsCount");
+        rendezvous("IncrementIntValueThreadWithBMUnitRunnerTest.suspendThreadsAtBeginning");
+        joinWait("IncrementIntValueThreadWithBMUnitRunnerTest.waitUntilAllThreadsCompleted", expectedCount);
+        int threadsReleasedCount = readCounter("IncrementIntValueThreadWithBMUnitRunnerTest.releaseThreadsCount");
 
         // then
         assertEquals(expectedCount, atomicInteger.get());

@@ -15,18 +15,22 @@
         <dependency>
             <groupId>org.jboss.byteman</groupId>
             <artifactId>byteman-bmunit</artifactId>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.jboss.byteman</groupId>
             <artifactId>byteman</artifactId>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.jboss.byteman</groupId>
             <artifactId>byteman-submit</artifactId>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.jboss.byteman</groupId>
             <artifactId>byteman-install</artifactId>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.spockframework</groupId>
