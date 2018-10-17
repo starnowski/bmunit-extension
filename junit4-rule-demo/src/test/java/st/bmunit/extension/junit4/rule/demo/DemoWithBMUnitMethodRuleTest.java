@@ -2,20 +2,21 @@ package st.bmunit.extension.junit4.rule.demo;
 
 import org.jboss.byteman.contrib.bmunit.BMRule;
 import org.jboss.byteman.contrib.bmunit.BMRules;
-import org.jboss.byteman.contrib.bmunit.BMUnitRunner;
+import org.junit.Rule;
 import org.junit.Test;
-import org.junit.runner.RunWith;
+import st.bmunit.extension.junit4.rule.BMUnitMethodRule;
 
 import static org.junit.Assert.assertEquals;
 import static st.bmunit.extension.junit4.rule.demo.Demo.returnOne;
 import static st.bmunit.extension.junit4.rule.demo.Demo.returnZero;
 
-@RunWith(BMUnitRunner.class)
-public class DemoTestWithBMUnitRunner {
+public class DemoWithBMUnitMethodRuleTest {
+
+    @Rule
+    public BMUnitMethodRule bmUnitMethodRule = new BMUnitMethodRule();
 
     @Test
-    public void shouldReturnZeroWithoutBytecodeModification()
-    {
+    public void shouldReturnZeroWithoutBytecodeModification() {
         // when
         int result = returnZero();
 
@@ -25,12 +26,11 @@ public class DemoTestWithBMUnitRunner {
 
     @Test
     @BMRule(name = "should return one after bytecode modification",
-        targetClass = "st.bmunit.extension.junit4.rule.demo.Demo",
-        targetMethod = "returnZero",
-        targetLocation = "AT EXIT",
-        action = "$! = 1")
-    public void shouldReturnOneAfterBytecodeModification()
-    {
+            targetClass = "st.bmunit.extension.junit4.rule.demo.Demo",
+            targetMethod = "returnZero",
+            targetLocation = "AT EXIT",
+            action = "$! = 1")
+    public void shouldReturnOneAfterBytecodeModification() {
         // when
         int result = returnZero();
 
@@ -68,5 +68,4 @@ public class DemoTestWithBMUnitRunner {
         // then
         assertEquals(3, result);
     }
-
 }
