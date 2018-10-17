@@ -4,6 +4,7 @@ import org.jboss.byteman.contrib.bmunit.BMRule;
 import org.jboss.byteman.contrib.bmunit.BMRules;
 import org.junit.Rule;
 import org.junit.Test;
+import st.bmunit.extension.junit4.rule.BMUnitMethodRule;
 import st.bmunit.extension.util.IncrementIntValueThread;
 
 import java.util.concurrent.atomic.AtomicInteger;
