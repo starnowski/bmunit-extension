@@ -6,7 +6,7 @@
 
     <groupId>st.bmunit.extension</groupId>
     <artifactId>parent</artifactId>
-    <version>0.1.0-SNAPSHOT</version>
+    <version>0.1.0</version>
     <modules>
         <module>junit4-rule</module>
         <module>utils</module>
