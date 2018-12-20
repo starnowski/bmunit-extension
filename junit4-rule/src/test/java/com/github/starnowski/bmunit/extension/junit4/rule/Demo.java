@@ -1,4 +1,4 @@
-package st.bmunit.extension.junit4.rule;
+package com.github.starnowski.bmunit.extension.junit4.rule;
 
 class Demo {
 

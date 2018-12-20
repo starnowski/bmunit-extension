@@ -1,10 +1,10 @@
 package st.bmunit.extension.junit4.rule.demo;
 
+import com.github.starnowski.bmunit.extension.junit4.rule.BMUnitMethodRule;
 import org.jboss.byteman.contrib.bmunit.BMRule;
 import org.jboss.byteman.contrib.bmunit.BMRules;
 import org.junit.Rule;
 import org.junit.Test;
-import st.bmunit.extension.junit4.rule.BMUnitMethodRule;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
