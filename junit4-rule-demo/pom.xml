@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>parent</artifactId>
-        <groupId>st.bmunit.extension</groupId>
+        <groupId>com.github.starnowski.bmunit.extension</groupId>
         <version>0.1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -13,13 +13,13 @@
 
     <dependencies>
         <dependency>
-            <groupId>st.bmunit.extension</groupId>
+            <groupId>com.github.starnowski.bmunit.extension</groupId>
             <artifactId>junit4-rule</artifactId>
             <version>${project.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>st.bmunit.extension</groupId>
+            <groupId>com.github.starnowski.bmunit.extension</groupId>
             <artifactId>utils</artifactId>
             <version>${project.version}</version>
             <scope>test</scope>
