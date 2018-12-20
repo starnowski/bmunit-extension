@@ -8,8 +8,8 @@ import org.junit.Test;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
+import static com.github.starnowski.bmunit.extension.utils.BMUnitUtils.*;
 import static org.junit.Assert.assertEquals;
-import static st.bmunit.extension.utils.BMUnitUtils.*;
 
 public class IncrementIntValueThreadWithBMUnitMethodRuleTest {
 

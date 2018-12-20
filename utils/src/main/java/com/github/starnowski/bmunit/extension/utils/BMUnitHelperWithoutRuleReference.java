@@ -1,4 +1,4 @@
-package st.bmunit.extension.utils;
+package com.github.starnowski.bmunit.extension.utils;
 
 import org.jboss.byteman.rule.helper.Helper;
 
