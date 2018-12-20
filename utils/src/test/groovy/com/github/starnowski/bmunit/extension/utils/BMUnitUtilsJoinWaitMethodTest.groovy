@@ -1,4 +1,4 @@
-package st.bmunit.extension.utils
+package com.github.starnowski.bmunit.extension.utils
 
 import spock.lang.Specification
 
