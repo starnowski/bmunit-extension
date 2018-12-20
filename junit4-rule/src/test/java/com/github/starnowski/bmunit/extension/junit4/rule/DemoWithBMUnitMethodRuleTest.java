@@ -1,21 +1,21 @@
-package st.bmunit.extension.junit4.rule;
+package com.github.starnowski.bmunit.extension.junit4.rule;
 
 import org.jboss.byteman.contrib.bmunit.BMRule;
 import org.jboss.byteman.contrib.bmunit.BMRules;
-import org.jboss.byteman.contrib.bmunit.BMUnitRunner;
+import org.junit.Rule;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
+import static com.github.starnowski.bmunit.extension.junit4.rule.Demo.returnOne;
+import static com.github.starnowski.bmunit.extension.junit4.rule.Demo.returnZero;
 import static org.junit.Assert.assertEquals;
-import static st.bmunit.extension.junit4.rule.Demo.returnOne;
-import static st.bmunit.extension.junit4.rule.Demo.returnZero;
 
-@RunWith(BMUnitRunner.class)
-public class DemoWithBMUnitRunnerTest {
+public class DemoWithBMUnitMethodRuleTest {
+
+    @Rule
+    public BMUnitMethodRule bmUnitMethodRule = new BMUnitMethodRule();
 
     @Test
-    public void shouldReturnZeroWithoutBytecodeModification()
-    {
+    public void shouldReturnZeroWithoutBytecodeModification() {
         // when
         int result = returnZero();
 
@@ -25,12 +25,11 @@ public class DemoWithBMUnitRunnerTest {
 
     @Test
     @BMRule(name = "should return one after bytecode modification",
-        targetClass = "st.bmunit.extension.junit4.rule.Demo",
-        targetMethod = "returnZero",
-        targetLocation = "AT EXIT",
-        action = "$! = 1")
-    public void shouldReturnOneAfterBytecodeModification()
-    {
+            targetClass = "com.github.starnowski.bmunit.extension.junit4.rule.Demo",
+            targetMethod = "returnZero",
+            targetLocation = "AT EXIT",
+            action = "$! = 1")
+    public void shouldReturnOneAfterBytecodeModification() {
         // when
         int result = returnZero();
 
@@ -50,13 +49,13 @@ public class DemoWithBMUnitRunnerTest {
 
     @Test
     @BMRules(rules = {
-            @BMRule(name = "method st.bmunit.extension.junit4.rule.Demo#returnZero should return one after bytecode modification",
-                    targetClass = "st.bmunit.extension.junit4.rule.Demo",
+            @BMRule(name = "method com.github.starnowski.bmunit.extension.junit4.rule.Demo#returnZero should return one after bytecode modification",
+                    targetClass = "com.github.starnowski.bmunit.extension.junit4.rule.Demo",
                     targetMethod = "returnZero",
                     targetLocation = "AT EXIT",
                     action = "$! = 1"),
-            @BMRule(name = "method st.bmunit.extension.junit4.rule.Demo#returnOne should return two after bytecode modification",
-                    targetClass = "st.bmunit.extension.junit4.rule.Demo",
+            @BMRule(name = "method com.github.starnowski.bmunit.extension.junit4.rule.Demo#returnOne should return two after bytecode modification",
+                    targetClass = "com.github.starnowski.bmunit.extension.junit4.rule.Demo",
                     targetMethod = "returnOne",
                     targetLocation = "AT EXIT",
                     action = "$! = 2")})
@@ -68,5 +67,4 @@ public class DemoWithBMUnitRunnerTest {
         // then
         assertEquals(3, result);
     }
-
 }
