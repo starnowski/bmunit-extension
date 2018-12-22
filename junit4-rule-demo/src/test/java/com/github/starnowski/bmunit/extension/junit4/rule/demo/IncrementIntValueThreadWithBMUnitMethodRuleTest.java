@@ -18,7 +18,7 @@ public class IncrementIntValueThreadWithBMUnitMethodRuleTest {
 
     @Test
     @BMRule(name = "should wait until all threads completed",
-            targetClass = "st.bmunit.extension.junit4.rule.demo.IncrementIntValueThread",
+            targetClass = "com.github.starnowski.bmunit.extension.junit4.rule.demo.IncrementIntValueThread",
             targetMethod = "run",
             targetLocation = "AT EXIT",
             action = "joinEnlist(\"IncrementIntValueThreadWithBMUnitMethodRuleTest.shouldWaitUntilAllThreadsCompleted\")")
@@ -41,12 +41,12 @@ public class IncrementIntValueThreadWithBMUnitMethodRuleTest {
     @Test
     @BMRules(rules = {
             @BMRule(name = "should suspend all threads",
-                    targetClass = "st.bmunit.extension.junit4.rule.demo.IncrementIntValueThread",
+                    targetClass = "com.github.starnowski.bmunit.extension.junit4.rule.demo.IncrementIntValueThread",
                     targetMethod = "run",
                     targetLocation = "AT ENTRY",
                     action = "rendezvous(\"IncrementIntValueThreadWithBMUnitMethodRuleTest.suspendThreadsAtBeginning\")"),
             @BMRule(name = "should wait until all threads completed",
-                    targetClass = "st.bmunit.extension.junit4.rule.demo.IncrementIntValueThread",
+                    targetClass = "com.github.starnowski.bmunit.extension.junit4.rule.demo.IncrementIntValueThread",
                     targetMethod = "run",
                     targetLocation = "AT EXIT",
                     action = "incrementCounter(\"IncrementIntValueThreadWithBMUnitMethodRuleTest.releaseThreadsCount\");joinEnlist(\"IncrementIntValueThreadWithBMUnitMethodRuleTest.waitUntilAllThreadsCompleted\")")})
