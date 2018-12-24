@@ -12,12 +12,10 @@ import javax.persistence.Entity;
 @Accessors(chain = true)
 @AllArgsConstructor
 @NoArgsConstructor
-@RequiredArgsConstructor
 @EqualsAndHashCode(of = "id")
 @ToString(of = {"id", "name"})
 public class User {
     private long id;
-    private String username;
     private String password;
     private String email;
 }
