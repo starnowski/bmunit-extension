@@ -18,4 +18,5 @@ public class User {
     private long id;
     private String password;
     private String email;
+    private String emailVerificationHash;
 }
