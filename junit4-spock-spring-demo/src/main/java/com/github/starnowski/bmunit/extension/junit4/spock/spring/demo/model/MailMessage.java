@@ -4,6 +4,7 @@ import lombok.*;
 import lombok.experimental.Accessors;
 import lombok.extern.slf4j.Slf4j;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 @Slf4j
@@ -13,9 +14,13 @@ import javax.persistence.Entity;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
-@ToString(of = {"id", "email", "subject"})
+@ToString(of = {"id", "mailTo", "mailSubject"})
 public class MailMessage {
     private long id;
-    private String email;
-    private String subject;
+    private String mailFrom;
+    private String mailTo;
+    private String mailSubject;
+    @Column(columnDefinition = "TEXT")
+    private String mailContent;
+    private String contentType;
 }
