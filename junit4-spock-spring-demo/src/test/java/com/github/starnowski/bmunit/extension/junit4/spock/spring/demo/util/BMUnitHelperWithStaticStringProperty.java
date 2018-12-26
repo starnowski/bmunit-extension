@@ -6,7 +6,7 @@ public class BMUnitHelperWithStaticStringProperty extends BMUnitHelperWithoutRul
 
     private static String staticStringProperty;
 
-    public static String getStaticStringProperty() {
+    public String getStaticStringProperty() {
         return staticStringProperty;
     }
 
