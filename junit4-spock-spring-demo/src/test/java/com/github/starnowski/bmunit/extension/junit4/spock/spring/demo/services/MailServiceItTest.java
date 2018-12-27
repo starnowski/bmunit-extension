@@ -64,7 +64,6 @@ public class MailServiceItTest {
     })
     public void shouldLockMailClientAsyncOperationAndThenSendSingleMailInAsyncOperation() throws IOException, MessagingException {
         // given
-        greenMail.reset();
         String verificationHash = UUID.randomUUID().toString();
         UserDto dto = new UserDto();
         dto.setEmail("simon.bimbo@gmail.com");
@@ -77,6 +76,35 @@ public class MailServiceItTest {
         int mailWithNewSendingStatusBeforeAsyncOperationCount = greenMail.getReceivedMessages().length;
         rendezvous("MailServiceItTest.shouldLockMailClientAsyncOperationAndThenSendSingleMailInAsyncOperation");
         joinWait("MailServiceItTest.shouldLockMailClientAsyncOperationAndThenSendSingleMailInAsyncOperation", 1, 5000);
+
+        // then
+        assertThat(mailWithNewSendingStatusBeforeAsyncOperationCount).isZero();
+        assertThat(greenMail.getReceivedMessages().length).isEqualTo(1);
+        assertThat((String) greenMail.getReceivedMessages()[0].getContent()).contains(verificationHash);
+        assertThat(greenMail.getReceivedMessages()[0].getSubject()).contains("New user");
+    }
+
+    @Test
+    @BMUnitConfig(verbose = true, bmunitVerbose = true)
+    @BMRules(rules = {
+            @BMRule(name = "signal thread waiting for mutex \"MailServiceItTest.shouldSendMailMessageAndWaitForMailAsyncOperationComplete\"",
+                    targetClass = "com.github.starnowski.bmunit.extension.junit4.spock.spring.demo.services.MailService",
+                    targetMethod = "handleNewUserEvent(com.github.starnowski.bmunit.extension.junit4.spock.spring.demo.util.NewUserEvent)",
+                    targetLocation = "AT EXIT",
+                    action = "joinEnlist(\"MailServiceItTest.shouldSendMailMessageAndWaitForMailAsyncOperationComplete\")")
+    })
+    public void shouldSendMailMessageAndWaitForMailAsyncOperationComplete() throws IOException, MessagingException {
+        // given
+        String verificationHash = UUID.randomUUID().toString();
+        UserDto dto = new UserDto();
+        dto.setEmail("simon.bimbo@gmail.com");
+        createJoin("MailServiceItTest.shouldSendMailMessageAndWaitForMailAsyncOperationComplete", 1);
+        assertEquals(0, greenMail.getReceivedMessages().length);
+
+        // when
+        tested.sendMessageToNewUser(dto, verificationHash);
+        int mailWithNewSendingStatusBeforeAsyncOperationCount = greenMail.getReceivedMessages().length;
+        joinWait("MailServiceItTest.shouldSendMailMessageAndWaitForMailAsyncOperationComplete", 1, 5000);
 
         // then
         assertThat(mailWithNewSendingStatusBeforeAsyncOperationCount).isZero();
