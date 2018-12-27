@@ -5,6 +5,8 @@ import lombok.experimental.Accessors;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Slf4j
 @Entity
@@ -14,7 +16,9 @@ import javax.persistence.Entity;
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 @ToString(of = {"id", "name"})
+@Table(name = "app_user")
 public class User {
+    @Id
     private long id;
     private String password;
     private String email;
