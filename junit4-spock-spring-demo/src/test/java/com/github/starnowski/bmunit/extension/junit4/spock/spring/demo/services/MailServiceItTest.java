@@ -54,29 +54,29 @@ public class MailServiceItTest {
                     targetClass = "com.github.starnowski.bmunit.extension.junit4.spock.spring.demo.services.MailService",
                     targetMethod = "handleNewUserEvent(com.github.starnowski.bmunit.extension.junit4.spock.spring.demo.util.NewUserEvent)",
                     targetLocation = "AT ENTRY",
-                    action = "rendezvous(\"MailServiceItTest.shouldSendSingleMailInAsyncOperation\")")
+                    action = "rendezvous(\"MailServiceItTest.shouldLockMailClientAsyncOperationAndThenSendSingleMailInAsyncOperation\")")
             ,
-            @BMRule(name = "signal thread waiting for mutex \"MailServiceItTest.shouldSendSingleMailInAsyncOperation\"",
+            @BMRule(name = "signal thread waiting for mutex \"MailServiceItTest.shouldLockMailClientAsyncOperationAndThenSendSingleMailInAsyncOperation\"",
                     targetClass = "com.github.starnowski.bmunit.extension.junit4.spock.spring.demo.services.MailService",
                     targetMethod = "handleNewUserEvent(com.github.starnowski.bmunit.extension.junit4.spock.spring.demo.util.NewUserEvent)",
                     targetLocation = "AT EXIT",
-                    action = "joinEnlist(\"MailServiceItTest.shouldSendSingleMailInAsyncOperation\")")
+                    action = "joinEnlist(\"MailServiceItTest.shouldLockMailClientAsyncOperationAndThenSendSingleMailInAsyncOperation\")")
     })
-    public void shouldSendSingleMailInAsyncOperation() throws IOException, MessagingException {
+    public void shouldLockMailClientAsyncOperationAndThenSendSingleMailInAsyncOperation() throws IOException, MessagingException {
         // given
         greenMail.reset();
         String verificationHash = UUID.randomUUID().toString();
         UserDto dto = new UserDto();
         dto.setEmail("simon.bimbo@gmail.com");
-        createJoin("MailServiceItTest.shouldSendSingleMailInAsyncOperation", 1);
-        createRendezvous("MailServiceItTest.shouldSendSingleMailInAsyncOperation", 2);
+        createJoin("MailServiceItTest.shouldLockMailClientAsyncOperationAndThenSendSingleMailInAsyncOperation", 1);
+        createRendezvous("MailServiceItTest.shouldLockMailClientAsyncOperationAndThenSendSingleMailInAsyncOperation", 2);
         assertEquals(0, greenMail.getReceivedMessages().length);
 
         // when
         tested.sendMessageToNewUser(dto, verificationHash);
         int mailWithNewSendingStatusBeforeAsyncOperationCount = greenMail.getReceivedMessages().length;
-        rendezvous("MailServiceItTest.shouldSendSingleMailInAsyncOperation");
-        joinWait("MailServiceItTest.shouldSendSingleMailInAsyncOperation", 1, 5000);
+        rendezvous("MailServiceItTest.shouldLockMailClientAsyncOperationAndThenSendSingleMailInAsyncOperation");
+        joinWait("MailServiceItTest.shouldLockMailClientAsyncOperationAndThenSendSingleMailInAsyncOperation", 1, 5000);
 
         // then
         assertThat(mailWithNewSendingStatusBeforeAsyncOperationCount).isZero();
