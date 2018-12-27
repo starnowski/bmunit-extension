@@ -52,13 +52,13 @@ public class MailServiceItTest {
     @BMRules(rules = {
             @BMRule(name = "suspend temporary async operation",
                     targetClass = "com.github.starnowski.bmunit.extension.junit4.spock.spring.demo.services.MailService",
-                    targetMethod = "handleNewUserEvent(com.github.starnowski.bmunit.extension.junit4.spock.spring.demo.util.InstanceRequestMailCreatedEvent)",
+                    targetMethod = "handleNewUserEvent(com.github.starnowski.bmunit.extension.junit4.spock.spring.demo.util.NewUserEvent)",
                     targetLocation = "AT ENTRY",
                     action = "rendezvous(\"MailServiceItTest.shouldSendSingleMailInAsyncOperation\")")
             ,
             @BMRule(name = "signal thread waiting for mutex \"MailServiceItTest.shouldSendSingleMailInAsyncOperation\"",
                     targetClass = "com.github.starnowski.bmunit.extension.junit4.spock.spring.demo.services.MailService",
-                    targetMethod = "handleNewUserEvent(com.github.starnowski.bmunit.extension.junit4.spock.spring.demo.util.InstanceRequestMailCreatedEvent)",
+                    targetMethod = "handleNewUserEvent(com.github.starnowski.bmunit.extension.junit4.spock.spring.demo.util.NewUserEvent)",
                     targetLocation = "AT EXIT",
                     action = "joinEnlist(\"MailServiceItTest.shouldSendSingleMailInAsyncOperation\")")
     })
@@ -79,7 +79,7 @@ public class MailServiceItTest {
         joinWait("MailServiceItTest.shouldSendSingleMailInAsyncOperation", 1, 5000);
 
         // then
-        assertThat(mailWithNewSendingStatusBeforeAsyncOperationCount).isEqualTo(1);
+        assertThat(mailWithNewSendingStatusBeforeAsyncOperationCount).isZero();
         assertThat(greenMail.getReceivedMessages().length).isEqualTo(1);
         assertThat((String) greenMail.getReceivedMessages()[0].getContent()).contains(verificationHash);
         assertThat(greenMail.getReceivedMessages()[0].getSubject()).contains("New user");
