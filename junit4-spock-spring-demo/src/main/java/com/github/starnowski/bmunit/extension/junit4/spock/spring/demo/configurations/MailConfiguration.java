@@ -12,9 +12,9 @@ import java.util.Properties;
 public class MailConfiguration {
 
 
-    @Value("{mail.sender.host}")
+    @Value("${mail.sender.host}")
     private String  mailSenderHost;
-    @Value("{mail.sender.port}")
+    @Value("${mail.sender.port}")
     private int  mailSenderPort;
 
     @Bean
