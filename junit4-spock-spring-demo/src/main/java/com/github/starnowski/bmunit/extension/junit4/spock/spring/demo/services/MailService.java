@@ -1,8 +1,11 @@
 package com.github.starnowski.bmunit.extension.junit4.spock.spring.demo.services;
 
 import com.github.starnowski.bmunit.extension.junit4.spock.spring.demo.dto.UserDto;
+import com.github.starnowski.bmunit.extension.junit4.spock.spring.demo.model.MailMessage;
+import com.github.starnowski.bmunit.extension.junit4.spock.spring.demo.repositories.MailMessageRepository;
 import com.github.starnowski.bmunit.extension.junit4.spock.spring.demo.util.NewUserEvent;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -19,11 +22,19 @@ import javax.mail.internet.MimeMessage;
 public class MailService {
 
     @Autowired
+    private MailMessageRepository mailMessageRepository;
+    @Autowired
     private JavaMailSender javaMailSender;
+    @Autowired
+    private ApplicationEventPublisher applicationEventPublisher;
 
     public void sendMessageToNewUser(UserDto dto, String emailVerificationHash)
     {
         //TODO
+        MailMessage mailMessage = new MailMessage();
+        mailMessage.setMailSubject("");
+        mailMessageRepository.save(mailMessage);
+        applicationEventPublisher.publishEvent(new NewUserEvent(mailMessage));
     }
 
     @Async

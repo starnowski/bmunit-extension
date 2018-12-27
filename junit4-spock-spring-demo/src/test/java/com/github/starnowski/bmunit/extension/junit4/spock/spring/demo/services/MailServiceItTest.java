@@ -17,6 +17,8 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.mail.MessagingException;
+import java.io.IOException;
 import java.util.UUID;
 
 import static com.github.starnowski.bmunit.extension.junit4.spock.spring.demo.util.DemoTestUtils.CLEAR_DATABASE_SCRIPT_PATH;
@@ -60,8 +62,7 @@ public class MailServiceItTest {
                     targetLocation = "AT EXIT",
                     action = "joinEnlist(\"MailServiceItTest.shouldSendSingleMailInAsyncOperation\")")
     })
-    public void shouldSendSingleMailInAsyncOperation()
-    {
+    public void shouldSendSingleMailInAsyncOperation() throws IOException, MessagingException {
         // given
         greenMail.reset();
         String verificationHash = UUID.randomUUID().toString();
@@ -80,5 +81,7 @@ public class MailServiceItTest {
         // then
         assertThat(mailWithNewSendingStatusBeforeAsyncOperationCount).isEqualTo(1);
         assertThat(greenMail.getReceivedMessages().length).isEqualTo(1);
+        assertThat((String) greenMail.getReceivedMessages()[0].getContent()).contains(verificationHash);
+        assertThat(greenMail.getReceivedMessages()[0].getSubject()).contains("New user");
     }
 }

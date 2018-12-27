@@ -14,12 +14,13 @@
     <groupId>com.github.starnowski.bmunit.extension</groupId>
 
     <properties>
-        <org.jboss.byteman.version>3.0.10</org.jboss.byteman.version>
-        <bmunit.extension.project.version>0.1.0</bmunit.extension.project.version>
-        <spock.core.version>1.1-groovy-2.4</spock.core.version>
         <java.version>1.8</java.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <org.jboss.byteman.version>3.0.10</org.jboss.byteman.version>
+        <bmunit.extension.project.version>0.1.0</bmunit.extension.project.version>
+        <spock.core.version>1.1-groovy-2.4</spock.core.version>
+        <h2.version>1.4.197</h2.version>
     </properties>
 
     <dependencies>
@@ -104,6 +105,11 @@
             <artifactId>greenmail</artifactId>
             <version>1.5.6</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${h2.version}</version>
         </dependency>
     </dependencies>
 
