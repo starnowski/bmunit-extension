@@ -18,6 +18,7 @@ import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import java.io.IOException;
 import java.util.UUID;
 
@@ -65,8 +66,9 @@ public class MailServiceItTest {
     public void shouldLockMailClientAsyncOperationAndThenSendSingleMailInAsyncOperation() throws IOException, MessagingException {
         // given
         String verificationHash = UUID.randomUUID().toString();
+        String expectedRecipient = "marry.jane@gmail.com";
         UserDto dto = new UserDto();
-        dto.setEmail("simon.bimbo@gmail.com");
+        dto.setEmail(expectedRecipient);
         createJoin("MailServiceItTest.shouldLockMailClientAsyncOperationAndThenSendSingleMailInAsyncOperation", 1);
         createRendezvous("MailServiceItTest.shouldLockMailClientAsyncOperationAndThenSendSingleMailInAsyncOperation", 2);
         assertEquals(0, greenMail.getReceivedMessages().length);
@@ -82,6 +84,7 @@ public class MailServiceItTest {
         assertThat(greenMail.getReceivedMessages().length).isEqualTo(1);
         assertThat((String) greenMail.getReceivedMessages()[0].getContent()).contains(verificationHash);
         assertThat(greenMail.getReceivedMessages()[0].getSubject()).contains("New user");
+        assertThatMailContainsSingleRecipientis(greenMail.getReceivedMessages()[0], expectedRecipient);
     }
 
     @Test
@@ -96,8 +99,9 @@ public class MailServiceItTest {
     public void shouldSendMailMessageAndWaitForMailAsyncOperationComplete() throws IOException, MessagingException {
         // given
         String verificationHash = UUID.randomUUID().toString();
+        String expectedRecipient = "john.doe@gmail.com";
         UserDto dto = new UserDto();
-        dto.setEmail("simon.bimbo@gmail.com");
+        dto.setEmail(expectedRecipient);
         createJoin("MailServiceItTest.shouldSendMailMessageAndWaitForMailAsyncOperationComplete", 1);
         assertEquals(0, greenMail.getReceivedMessages().length);
 
@@ -111,5 +115,11 @@ public class MailServiceItTest {
         assertThat(greenMail.getReceivedMessages().length).isEqualTo(1);
         assertThat((String) greenMail.getReceivedMessages()[0].getContent()).contains(verificationHash);
         assertThat(greenMail.getReceivedMessages()[0].getSubject()).contains("New user");
+        assertThatMailContainsSingleRecipientis(greenMail.getReceivedMessages()[0], expectedRecipient);
+    }
+
+    private void assertThatMailContainsSingleRecipientis(MimeMessage mimeMessage, String recipient) throws MessagingException {
+        assertThat(mimeMessage.getAllRecipients()).hasSize(1);
+        assertThat(mimeMessage.getAllRecipients()[0].toString()).contains(recipient);
     }
 }
