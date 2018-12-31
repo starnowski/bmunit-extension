@@ -15,6 +15,7 @@ import org.springframework.test.context.jdbc.Sql
 import org.springframework.test.context.jdbc.SqlConfig
 import org.springframework.test.context.jdbc.SqlGroup
 import spock.lang.Specification
+import spock.lang.Unroll
 
 import javax.mail.MessagingException
 import javax.mail.internet.MimeMessage
@@ -48,6 +49,7 @@ class MailServiceSpockItTest extends Specification {
     @Autowired
     MailService tested
 
+    @Unroll
     @BMUnitConfig(verbose = true, bmunitVerbose = true)
     @BMRules(rules = [
         @BMRule(name = "signal thread waiting for mutex \"MailServiceItTest.shouldSendMailMessageAndWaitForMailAsyncOperationComplete\"",
@@ -58,28 +60,34 @@ class MailServiceSpockItTest extends Specification {
     )
     def "should send mail message and wait until async operation is completed"() throws IOException, MessagingException {
         given:
-            String verificationHash = UUID.randomUUID().toString();
-            String expectedRecipient = "john.doe@gmail.com";
-            UserDto dto = new UserDto();
-            dto.setEmail(expectedRecipient);
-            createJoin("MailServiceItTest.shouldSendMailMessageAndWaitForMailAsyncOperationComplete", 1);
-            assertEquals(0, greenMail.getReceivedMessages().length);
+            UserDto dto = new UserDto()
+            dto.setEmail(expectedRecipient)
+            createJoin("MailServiceItTest.shouldSendMailMessageAndWaitForMailAsyncOperationComplete", 1)
+            assertEquals(0, greenMail.getReceivedMessages().length)
 
         when:
-            tested.sendMessageToNewUser(dto, verificationHash);
-            int mailWithNewSendingStatusBeforeAsyncOperationCount = greenMail.getReceivedMessages().length;
-            joinWait("MailServiceItTest.shouldSendMailMessageAndWaitForMailAsyncOperationComplete", 1, GROOVY_TEST_ASYNC_OPERATION_TIMEOUT);
+            tested.sendMessageToNewUser(dto, verificationHash)
+            int mailWithNewSendingStatusBeforeAsyncOperationCount = greenMail.getReceivedMessages().length
+            joinWait("MailServiceItTest.shouldSendMailMessageAndWaitForMailAsyncOperationComplete", 1, GROOVY_TEST_ASYNC_OPERATION_TIMEOUT)
 
         then:
-            assertThat(mailWithNewSendingStatusBeforeAsyncOperationCount).isZero();
-            assertThat(greenMail.getReceivedMessages().length).isEqualTo(1);
-            assertThat((String) greenMail.getReceivedMessages()[0].getContent()).contains(verificationHash);
-            assertThat(greenMail.getReceivedMessages()[0].getSubject()).contains("New user");
-            assertThatMailContainsSingleRecipientis(greenMail.getReceivedMessages()[0], expectedRecipient);
+            mailWithNewSendingStatusBeforeAsyncOperationCount == 0
+            greenMail.getReceivedMessages().length == 1
+            ((String) greenMail.getReceivedMessages()[0].getContent()).contains(verificationHash)
+            greenMail.getReceivedMessages()[0].getSubject().contains("New user")
+            assertThatMailContainsSingleRecipientis(greenMail.getReceivedMessages()[0], expectedRecipient)
+        where:
+            expectedRecipient       |   verificationHash
+            "john.doe@gmail.com"    |   UUID.randomUUID().toString()
+            "marry.doe@hotmail.com" |   UUID.randomUUID().toString()
+            "john.doe@gmail.com"    |   "SOME-HASH"
+            "marry.doe@hotmail.com" |   "SOME-HASH"
+            "john.doe@gmail.com"    |   "XXX-asdkljafds"
+            "jack.black@aws.eu"     |   "asdfxzcvz"
     }
 
     private void assertThatMailContainsSingleRecipientis(MimeMessage mimeMessage, String recipient) throws MessagingException {
-        assertThat(mimeMessage.getAllRecipients()).hasSize(1);
-        assertThat(mimeMessage.getAllRecipients()[0].toString()).contains(recipient);
+        assertThat(mimeMessage.getAllRecipients()).hasSize(1)
+        assertThat(mimeMessage.getAllRecipients()[0].toString()).contains(recipient)
     }
 }
