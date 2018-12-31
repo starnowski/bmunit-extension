@@ -38,6 +38,8 @@ import static org.springframework.test.context.jdbc.SqlConfig.TransactionMode.IS
 @SpringBootTest
 class MailServiceSpockItTest extends Specification {
 
+    private static int GROOVY_TEST_ASYNC_OPERATION_TIMEOUT = 20000;
+
     @Rule
     public BMUnitMethodRule bmUnitMethodRule = new BMUnitMethodRule()
     @Rule
@@ -66,7 +68,7 @@ class MailServiceSpockItTest extends Specification {
         when:
             tested.sendMessageToNewUser(dto, verificationHash);
             int mailWithNewSendingStatusBeforeAsyncOperationCount = greenMail.getReceivedMessages().length;
-            joinWait("MailServiceItTest.shouldSendMailMessageAndWaitForMailAsyncOperationComplete", 1, 5000);
+            joinWait("MailServiceItTest.shouldSendMailMessageAndWaitForMailAsyncOperationComplete", 1, GROOVY_TEST_ASYNC_OPERATION_TIMEOUT);
 
         then:
             assertThat(mailWithNewSendingStatusBeforeAsyncOperationCount).isZero();
