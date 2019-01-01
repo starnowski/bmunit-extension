@@ -66,11 +66,9 @@ class MailServiceSpockItTest extends Specification {
 
         when:
             tested.sendMessageToNewUser(dto, verificationHash)
-            int mailWithNewSendingStatusBeforeAsyncOperationCount = greenMail.getReceivedMessages().length
             joinWait("MailServiceItTest.shouldSendMailMessageAndWaitForMailAsyncOperationComplete", 1, GROOVY_TEST_ASYNC_OPERATION_TIMEOUT)
 
         then:
-            mailWithNewSendingStatusBeforeAsyncOperationCount == 0
             greenMail.getReceivedMessages().length == 1
             ((String) greenMail.getReceivedMessages()[0].getContent()).contains(verificationHash)
             greenMail.getReceivedMessages()[0].getSubject().contains("New user")

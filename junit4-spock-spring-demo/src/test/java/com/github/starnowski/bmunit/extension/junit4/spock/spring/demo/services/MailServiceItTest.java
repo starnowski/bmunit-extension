@@ -107,11 +107,9 @@ public class MailServiceItTest {
 
         // when
         tested.sendMessageToNewUser(dto, verificationHash);
-        int mailWithNewSendingStatusBeforeAsyncOperationCount = greenMail.getReceivedMessages().length;
         joinWait("MailServiceItTest.shouldSendMailMessageAndWaitForMailAsyncOperationComplete", 1, 5000);
 
         // then
-        assertThat(mailWithNewSendingStatusBeforeAsyncOperationCount).isZero();
         assertThat(greenMail.getReceivedMessages().length).isEqualTo(1);
         assertThat((String) greenMail.getReceivedMessages()[0].getContent()).contains(verificationHash);
         assertThat(greenMail.getReceivedMessages()[0].getSubject()).contains("New user");

@@ -76,12 +76,10 @@ public class UserControllerTest {
 
         // when
         UserDto responseEntity = restTemplate.postForObject(new URI("http://localhost:" + port + "/users"), (Object) dto, UserDto.class);
-        int mailWithNewSendingStatusBeforeAsyncOperationCount = greenMail.getReceivedMessages().length;
         joinWait("UserControllerTest.shouldCreateNewUserAndSendMailMessageInAsyncOperation", 1, 15000);
 
         // then
         assertThat(userRepository.findByEmail(expectedEmail)).isNotNull();
-        assertThat(mailWithNewSendingStatusBeforeAsyncOperationCount).isZero();
         assertThat(greenMail.getReceivedMessages().length).isEqualTo(1);
         assertThat(greenMail.getReceivedMessages()[0].getSubject()).contains("New user");
         assertThat(greenMail.getReceivedMessages()[0].getAllRecipients()[0].toString()).contains(expectedEmail);
