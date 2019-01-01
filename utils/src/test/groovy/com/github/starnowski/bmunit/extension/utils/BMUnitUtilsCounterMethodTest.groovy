@@ -140,4 +140,46 @@ class BMUnitUtilsCounterMethodTest extends Specification {
             "BMUnitUtilsCounterMethodTest#7_3"  |   7
             "BMUnitUtilsCounterMethodTest#7_4"  |   1
     }
+
+    @Unroll
+    def "should read and reset value for counter '#counterName' with initial value #initValue" ()
+    {
+        given:
+            createCounter(counterName, initValue)
+
+        when:
+            def result = BMUnitUtils.readCounter(counterName, true)
+
+        then:
+            result == initValue
+            readCounter(counterName) == 0
+
+        where:
+            counterName                         |   initValue
+            "BMUnitUtilsCounterMethodTest#8_1"  |   8
+            "BMUnitUtilsCounterMethodTest#8_2"  |   3
+            "BMUnitUtilsCounterMethodTest#8_3"  |   7
+            "BMUnitUtilsCounterMethodTest#8_4"  |   1
+    }
+
+    @Unroll
+    def "should read but not reset value for counter '#counterName' with initial value #initValue" ()
+    {
+        given:
+        createCounter(counterName, initValue)
+
+        when:
+        def result = BMUnitUtils.readCounter(counterName, false)
+
+        then:
+        result == initValue
+        readCounter(counterName) == initValue
+
+        where:
+        counterName                         |   initValue
+        "BMUnitUtilsCounterMethodTest#9_1"  |   8
+        "BMUnitUtilsCounterMethodTest#9_2"  |   3
+        "BMUnitUtilsCounterMethodTest#9_3"  |   7
+        "BMUnitUtilsCounterMethodTest#9_4"  |   1
+    }
 }
