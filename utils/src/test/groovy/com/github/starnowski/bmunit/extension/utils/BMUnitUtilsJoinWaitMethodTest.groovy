@@ -35,7 +35,7 @@ class BMUnitUtilsJoinWaitMethodTest extends Specification {
             !threadWasSuspended
     }
 
-    def "should suspend thread with expected timeou when expected 'joiner' exists and other thread reached joiner" ()
+    def "should suspend thread with expected timeout when expected 'joiner' exists and other thread reached joiner" ()
     {
         given:
             def expectedJoiner = "TEST_3"
