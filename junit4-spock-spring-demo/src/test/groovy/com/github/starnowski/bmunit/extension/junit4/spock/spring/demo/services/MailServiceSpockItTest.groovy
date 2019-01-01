@@ -36,7 +36,7 @@ import static org.springframework.test.context.jdbc.SqlConfig.TransactionMode.IS
         config = @SqlConfig(transactionMode = ISOLATED),
         executionPhase = AFTER_TEST_METHOD)])
 @EnableAsync
-@SpringBootTest
+@SpringBootTest(webEnvironment=SpringBootTest.WebEnvironment.RANDOM_PORT)
 class MailServiceSpockItTest extends Specification {
 
     private static int GROOVY_TEST_ASYNC_OPERATION_TIMEOUT = 20000;
