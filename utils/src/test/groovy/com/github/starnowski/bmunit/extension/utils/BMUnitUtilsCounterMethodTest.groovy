@@ -22,7 +22,7 @@ class BMUnitUtilsCounterMethodTest extends Specification {
     }
 
     @Unroll
-    def "should create counter #counterName with value #expectedValue" ()
+    def "should create counter '#counterName' with value #expectedValue" ()
     {
         when:
             def result = createCounter(counterName, expectedValue)
@@ -37,5 +37,26 @@ class BMUnitUtilsCounterMethodTest extends Specification {
             "BMUnitUtilsCounterMethodTest#2_2"  |   1
             "BMUnitUtilsCounterMethodTest#2_3"  |   7
             "BMUnitUtilsCounterMethodTest#2_4"  |   2
+    }
+
+    @Unroll
+    def "should increment counter '#counterName' with initial value #initValue by one" ()
+    {
+        given:
+            createCounter(counterName, initValue)
+
+        when:
+        def result = BMUnitUtils.incrementCounter(counterName)
+
+        then:
+            result
+            readCounter(counterName) == (initValue + 1)
+
+        where:
+            counterName                         |   initValue
+            "BMUnitUtilsCounterMethodTest#3_1"  |   8
+            "BMUnitUtilsCounterMethodTest#3_2"  |   3
+            "BMUnitUtilsCounterMethodTest#3_3"  |   7
+            "BMUnitUtilsCounterMethodTest#3_4"  |   1
     }
 }
