@@ -60,24 +60,24 @@ public class UserControllerTest {
     @Test
     @BMUnitConfig(verbose = true, bmunitVerbose = true)
     @BMRules(rules = {
-            @BMRule(name = "signal thread waiting for mutex \"UserControllerTest.shouldSendMailMessageAndWaitForMailAsyncOperationComplete\"",
+            @BMRule(name = "signal thread waiting for mutex \"UserControllerTest.shouldCreateNewUserAndSendMailMessageInAsyncOperation\"",
                     targetClass = "com.github.starnowski.bmunit.extension.junit4.spock.spring.demo.services.MailService",
                     targetMethod = "handleNewUserEvent(com.github.starnowski.bmunit.extension.junit4.spock.spring.demo.util.NewUserEvent)",
                     targetLocation = "AT EXIT",
-                    action = "joinEnlist(\"UserControllerTest.shouldSendMailMessageAndWaitForMailAsyncOperationComplete\")")
+                    action = "joinEnlist(\"UserControllerTest.shouldCreateNewUserAndSendMailMessageInAsyncOperation\")")
     })
     public void shouldCreateNewUserAndSendMailMessageInAsyncOperation() throws IOException, URISyntaxException, MessagingException {
         // given
         String expectedEmail = "szymon.doe@nosuch.domain.com";
         assertThat(userRepository.findByEmail(expectedEmail)).isNull();
         UserDto dto = new UserDto().setEmail(expectedEmail).setPassword("XXX");
-        createJoin("MailServiceItTest.shouldSendMailMessageAndWaitForMailAsyncOperationComplete", 1);
+        createJoin("UserControllerTest.shouldCreateNewUserAndSendMailMessageInAsyncOperation", 1);
         assertEquals(0, greenMail.getReceivedMessages().length);
 
         // when
-        UserDto responseEntity = restTemplate.postForObject(new URI("http://:" + port + "/users"), (Object) dto, UserDto.class);
+        UserDto responseEntity = restTemplate.postForObject(new URI("http://localhost:" + port + "/users"), (Object) dto, UserDto.class);
         int mailWithNewSendingStatusBeforeAsyncOperationCount = greenMail.getReceivedMessages().length;
-        joinWait("MailServiceItTest.shouldSendMailMessageAndWaitForMailAsyncOperationComplete", 1, 5000);
+        joinWait("UserControllerTest.shouldCreateNewUserAndSendMailMessageInAsyncOperation", 1, 15000);
 
         // then
         assertThat(userRepository.findByEmail(expectedEmail)).isNotNull();
