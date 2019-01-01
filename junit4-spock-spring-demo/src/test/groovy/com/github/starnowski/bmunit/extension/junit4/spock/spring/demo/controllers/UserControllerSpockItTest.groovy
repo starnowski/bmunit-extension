@@ -72,12 +72,10 @@ class UserControllerSpockItTest extends Specification {
 
         when:
             UserDto responseEntity = restTemplate.postForObject(new URI("http://localhost:" + port + "/users"), (Object) dto, UserDto.class);
-            int mailWithNewSendingStatusBeforeAsyncOperationCount = greenMail.getReceivedMessages().length;
             joinWait("UserControllerSpockItTest.shouldCreateNewUserAndSendMailMessageInAsyncOperation", 1, GROOVY_TEST_ASYNC_OPERATION_TIMEOUT);
 
         then:
             assertThat(userRepository.findByEmail(expectedEmail)).isNotNull();
-            assertThat(mailWithNewSendingStatusBeforeAsyncOperationCount).isZero();
             assertThat(greenMail.getReceivedMessages().length).isEqualTo(1);
             assertThat(greenMail.getReceivedMessages()[0].getSubject()).contains("New user");
             assertThat(greenMail.getReceivedMessages()[0].getAllRecipients()[0].toString()).contains(expectedEmail);
