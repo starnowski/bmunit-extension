@@ -3,8 +3,7 @@ package com.github.starnowski.bmunit.extension.utils
 import spock.lang.Specification
 import spock.lang.Unroll
 
-import static com.github.starnowski.bmunit.extension.utils.BMUnitUtils.createCounter
-import static com.github.starnowski.bmunit.extension.utils.BMUnitUtils.readCounter
+import static com.github.starnowski.bmunit.extension.utils.BMUnitUtils.*
 
 class BMUnitUtilsCounterMethodTest extends Specification {
 
@@ -46,10 +45,10 @@ class BMUnitUtilsCounterMethodTest extends Specification {
             createCounter(counterName, initValue)
 
         when:
-        def result = BMUnitUtils.incrementCounter(counterName)
+        def result = incrementCounter(counterName)
 
         then:
-            result
+            result == (initValue + 1)
             readCounter(counterName) == (initValue + 1)
 
         where:
@@ -58,5 +57,26 @@ class BMUnitUtilsCounterMethodTest extends Specification {
             "BMUnitUtilsCounterMethodTest#3_2"  |   3
             "BMUnitUtilsCounterMethodTest#3_3"  |   7
             "BMUnitUtilsCounterMethodTest#3_4"  |   1
+    }
+
+    @Unroll
+    def "should increment counter '#counterName' with initial value #initValue by #addedValue" ()
+    {
+        given:
+            createCounter(counterName, initValue)
+
+        when:
+            def result = incrementCounter(counterName, addedValue)
+
+        then:
+            result == (initValue + addedValue)
+            readCounter(counterName) == (initValue + addedValue)
+
+        where:
+            counterName                         |   initValue   |   addedValue
+            "BMUnitUtilsCounterMethodTest#4_1"  |   8           |   4
+            "BMUnitUtilsCounterMethodTest#4_2"  |   3           |   7
+            "BMUnitUtilsCounterMethodTest#4_3"  |   7           |   5
+            "BMUnitUtilsCounterMethodTest#4_4"  |   1           |   6
     }
 }
