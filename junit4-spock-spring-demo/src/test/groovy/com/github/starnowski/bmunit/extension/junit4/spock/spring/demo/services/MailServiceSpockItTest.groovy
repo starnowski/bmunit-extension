@@ -21,6 +21,7 @@ import javax.mail.MessagingException
 import javax.mail.internet.MimeMessage
 
 import static com.github.starnowski.bmunit.extension.junit4.spock.spring.demo.util.DemoTestUtils.CLEAR_DATABASE_SCRIPT_PATH
+import static com.github.starnowski.bmunit.extension.junit4.spock.spring.demo.util.DemoTestUtils.GROOVY_TEST_ASYNC_OPERATION_TIMEOUT
 import static com.github.starnowski.bmunit.extension.utils.BMUnitUtils.createJoin
 import static com.github.starnowski.bmunit.extension.utils.BMUnitUtils.joinWait
 import static org.assertj.core.api.Assertions.assertThat
@@ -38,8 +39,6 @@ import static org.springframework.test.context.jdbc.SqlConfig.TransactionMode.IS
 @EnableAsync
 @SpringBootTest(webEnvironment=SpringBootTest.WebEnvironment.RANDOM_PORT)
 class MailServiceSpockItTest extends Specification {
-
-    private static int GROOVY_TEST_ASYNC_OPERATION_TIMEOUT = 20000;
 
     @Rule
     public BMUnitMethodRule bmUnitMethodRule = new BMUnitMethodRule()
@@ -76,6 +75,7 @@ class MailServiceSpockItTest extends Specification {
             ((String) greenMail.getReceivedMessages()[0].getContent()).contains(verificationHash)
             greenMail.getReceivedMessages()[0].getSubject().contains("New user")
             assertThatMailContainsSingleRecipientis(greenMail.getReceivedMessages()[0], expectedRecipient)
+
         where:
             expectedRecipient       |   verificationHash
             "john.doe@gmail.com"    |   UUID.randomUUID().toString()
