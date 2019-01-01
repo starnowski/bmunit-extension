@@ -79,4 +79,44 @@ class BMUnitUtilsCounterMethodTest extends Specification {
             "BMUnitUtilsCounterMethodTest#4_3"  |   7           |   5
             "BMUnitUtilsCounterMethodTest#4_4"  |   1           |   6
     }
+
+    @Unroll
+    def "should delete counter '#counterName' with initial value #initValue" ()
+    {
+        given:
+            createCounter(counterName, initValue)
+
+        when:
+            def result = deleteCounter(counterName)
+
+        then:
+            result
+
+        and: "return zero when counter not exists"
+            readCounter(counterName) == 0
+
+        where:
+            counterName                         |   initValue
+            "BMUnitUtilsCounterMethodTest#5_1"  |   8
+            "BMUnitUtilsCounterMethodTest#5_2"  |   3
+            "BMUnitUtilsCounterMethodTest#5_3"  |   7
+            "BMUnitUtilsCounterMethodTest#5_4"  |   1
+    }
+
+    @Unroll
+    def "should return false when during trying to delete counter which not exists" ()
+    {
+        when:
+            def result = deleteCounter(counterName)
+
+        then:
+            !result
+
+        where:
+            counterName                         |   initValue
+            "BMUnitUtilsCounterMethodTest#6_1"  |   8
+            "BMUnitUtilsCounterMethodTest#6_2"  |   3
+            "BMUnitUtilsCounterMethodTest#6_3"  |   7
+            "BMUnitUtilsCounterMethodTest#6_4"  |   1
+    }
 }
