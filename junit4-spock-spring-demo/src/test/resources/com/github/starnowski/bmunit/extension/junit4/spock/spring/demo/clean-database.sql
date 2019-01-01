@@ -1,0 +1,2 @@
+DELETE FROM app_user CASCADE;
+DELETE FROM mail_message CASCADE;
