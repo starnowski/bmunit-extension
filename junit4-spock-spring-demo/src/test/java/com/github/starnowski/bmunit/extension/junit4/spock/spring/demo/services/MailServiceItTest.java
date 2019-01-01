@@ -31,7 +31,7 @@ import static org.springframework.test.context.jdbc.Sql.ExecutionPhase.BEFORE_TE
 import static org.springframework.test.context.jdbc.SqlConfig.TransactionMode.ISOLATED;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(webEnvironment=SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Sql(value = CLEAR_DATABASE_SCRIPT_PATH,
         config = @SqlConfig(transactionMode = ISOLATED),
         executionPhase = BEFORE_TEST_METHOD)
