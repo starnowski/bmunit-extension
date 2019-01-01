@@ -138,6 +138,13 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.1</version>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 </project>
