@@ -119,4 +119,25 @@ class BMUnitUtilsCounterMethodTest extends Specification {
             "BMUnitUtilsCounterMethodTest#6_3"  |   7
             "BMUnitUtilsCounterMethodTest#6_4"  |   1
     }
+
+    @Unroll
+    def "should decrement counter '#counterName' with initial value #initValue by one" ()
+    {
+        given:
+            createCounter(counterName, initValue)
+
+        when:
+            def result = decrementCounter(counterName)
+
+        then:
+            result == (initValue - 1)
+            readCounter(counterName) == (initValue - 1)
+
+        where:
+            counterName                         |   initValue
+            "BMUnitUtilsCounterMethodTest#7_1"  |   8
+            "BMUnitUtilsCounterMethodTest#7_2"  |   3
+            "BMUnitUtilsCounterMethodTest#7_3"  |   7
+            "BMUnitUtilsCounterMethodTest#7_4"  |   1
+    }
 }
