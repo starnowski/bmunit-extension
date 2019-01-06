@@ -1,8 +1,8 @@
-package com.github.starnowski.bmunit.extension.junit4.rule.demo;
+package com.github.starnowski.bmunit.extension.junit4.rule.utils.demo;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-class IncrementIntValueThread extends Thread{
+public class IncrementIntValueThread extends Thread{
 
     private final AtomicInteger integerValue;
 

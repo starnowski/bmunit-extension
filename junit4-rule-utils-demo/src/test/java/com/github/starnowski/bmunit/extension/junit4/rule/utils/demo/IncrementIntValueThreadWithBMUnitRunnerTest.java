@@ -1,4 +1,5 @@
-package com.github.starnowski.bmunit.extension.junit4.rule.demo;
+package com.github.starnowski.bmunit.extension.junit4.rule.utils.demo;
+
 
 import org.jboss.byteman.contrib.bmunit.BMRule;
 import org.jboss.byteman.contrib.bmunit.BMRules;
@@ -16,7 +17,7 @@ public class IncrementIntValueThreadWithBMUnitRunnerTest {
 
     @Test
     @BMRule(name = "should wait until all threads completed",
-            targetClass = "com.github.starnowski.bmunit.extension.junit4.rule.demo.IncrementIntValueThread",
+            targetClass = "com.github.starnowski.bmunit.extension.junit4.rule.utils.demo.IncrementIntValueThread",
             targetMethod = "run",
             targetLocation = "AT EXIT",
             action = "joinEnlist(\"IncrementIntValueThreadWithBMUnitRunnerTest.shouldWaitUntilAllThreadsCompleted\")")
@@ -41,12 +42,12 @@ public class IncrementIntValueThreadWithBMUnitRunnerTest {
     @Test
     @BMRules(rules = {
             @BMRule(name = "should suspend all threads",
-                    targetClass = "com.github.starnowski.bmunit.extension.junit4.rule.demo.IncrementIntValueThread",
+                    targetClass = "com.github.starnowski.bmunit.extension.junit4.rule.utils.demo.IncrementIntValueThread",
                     targetMethod = "run",
                     targetLocation = "AT ENTRY",
                     action = "rendezvous(\"IncrementIntValueThreadWithBMUnitRunnerTest.suspendThreadsAtBeginning\")"),
             @BMRule(name = "should wait until all threads completed",
-                    targetClass = "com.github.starnowski.bmunit.extension.junit4.rule.demo.IncrementIntValueThread",
+                    targetClass = "com.github.starnowski.bmunit.extension.junit4.rule.utils.demo.IncrementIntValueThread",
                     targetMethod = "run",
                     targetLocation = "AT EXIT",
                     action = "incrementCounter(\"IncrementIntValueThreadWithBMUnitRunnerTest.releaseThreadsCount\");joinEnlist(\"IncrementIntValueThreadWithBMUnitRunnerTest.waitUntilAllThreadsCompleted\")")})
