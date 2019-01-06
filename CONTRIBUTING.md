@@ -1,4 +1,5 @@
 [Commit message](#commit-message)
+
 [Branch naming convention](#branch-naming-convention)
 
 ## Commit message
