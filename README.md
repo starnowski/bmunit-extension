@@ -98,8 +98,10 @@ public BMUnitMethodRule bmUnitMethodRule = new BMUnitMethodRule();
 
 ```
 
-Project contains few modules with [tests](#demonstrational-tests) which demonstrated how to use the BMUnitMethodRule rule with junit4 tests and spock framework tests:
+Project contains few modules with [tests](#demonstrational-tests) which demonstrates how to use the BMUnitMethodRule rule with junit4 tests and spock framework tests:
 
+[use-utils]: #use-utils
+## How to use  "utils" module 
 
 [demonstrational-tests]: #demonstrational-tests
 ## Demonstrational tests
