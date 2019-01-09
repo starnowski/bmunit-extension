@@ -14,11 +14,6 @@
     <dependencies>
         <dependency>
             <groupId>org.jboss.byteman</groupId>
-            <artifactId>byteman-bmunit</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.byteman</groupId>
             <artifactId>byteman</artifactId>
             <optional>true</optional>
         </dependency>
