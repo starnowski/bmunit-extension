@@ -13,7 +13,6 @@ Support of junit4 test rule to bmunit framework.
 Project contains junit4 rule which allows integration with byteman framework and use it in junit and spock tests.
 Enables to use bmunit library in test executed by SpringRunner and Spock tests runner.
 
-
 ## Build project
 Build parent project with maven
 ```sh
@@ -41,6 +40,8 @@ mvn clean install
             <scope>test</scope>
         </dependency>
 ```
+>The module "com.github.starnowski.bmunit.extension:junit4-rule" is not deployed to any maven public repository yet.
+This means that you have to localy [build project](#build-project) by your own. 
 
 ## Dependencies for "utils"
 ```xml
@@ -53,16 +54,21 @@ mvn clean install
         <dependency>
             <groupId>org.jboss.byteman</groupId>
             <artifactId>byteman</artifactId>
-            <optional>true</optional>
+            <version>3.0.10</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.jboss.byteman</groupId>
             <artifactId>byteman-submit</artifactId>
-            <optional>true</optional>
+            <version>3.0.10</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.jboss.byteman</groupId>
             <artifactId>byteman-install</artifactId>
-            <optional>true</optional>
+            <version>3.0.10</version>
+            <scope>test</scope>
         </dependency>
 ```
+>The module "com.github.starnowski.bmunit.extension:utils" is not deployed to any maven public repository yet.
+This means that you have to localy [build project](#build-project) by your own. 
