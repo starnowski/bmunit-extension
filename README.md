@@ -9,8 +9,8 @@ Support of junit4 test rule to bmunit framework.
   * [Dependencies for "junit4-rule"](#dependencies-for-junit4-rule)
   * [Dependencies for "utils"](#dependencies-for-utils)
 * [How to use project](#use-project)
-  * [How to use "junit4-rule" module](#use-junit4-rule)
-  * [How to use  "utils" module](#use-utils)
+  * [How to use "junit4-rule" module](#how-to-use-junit4-rule-module)
+  * [How to use  "utils" module](#how-to-use-utils-module)
   * [Demonstrational tests](#demonstrational-tests)
 
 Project contains junit4 rule which allows integration with byteman framework and use it in junit and spock tests.
@@ -83,7 +83,7 @@ This means that you have to localy [build project](#build-project) by your own.
 
 [use-project]: #use-project
 # How to use project
-[use-junit4-rule]: #use-junit4-rule
+
 ## How to use "junit4-rule" module  
 To have ability to use anotations " org.jboss.byteman.contrib.bmunit.BMUnitConfig", "org.jboss.byteman.contrib.bmunit.BMRule" and "org.jboss.byteman.contrib.bmunit.BMRules" add the object of "com.github.starnowski.bmunit.extension.junit4.rule.BMUnitMethodRule" type into the test class.
 
@@ -100,8 +100,7 @@ public BMUnitMethodRule bmUnitMethodRule = new BMUnitMethodRule();
 
 Project contains few modules with [tests](#demonstrational-tests) which demonstrates how to use the BMUnitMethodRule rule with junit4 tests and spock framework tests:
 
-[use-utils]: #use-utils
-## How to use  "utils" module 
+## How to use "utils" module 
 
 [demonstrational-tests]: #demonstrational-tests
 ## Demonstrational tests
