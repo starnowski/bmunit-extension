@@ -112,6 +112,8 @@ Module "utils" contains two components:
 ## Demonstrational tests
 * Module "junit4-rule-demo" contains use case which demonstrate how use BMUnitMethodRule without BMUnitRunner
   * [Junit4 test without any runner](https://github.com/starnowski/bmunit-extension/blob/master/junit4-rule-demo/src/test/java/com/github/starnowski/bmunit/extension/junit4/rule/demo/UUIDFacadeWithBMUnitMethodRuleTest.java)
+* Module "junit4-rule-utils-demo" contains use cases which demonstrate how use BMUnitMethodRule without BMUnitRunner. It shows also usage of components from module "utils"
+  * [Junit4 test without any runner and which use "joins" and "counters" mechanisms](https://github.com/starnowski/bmunit-extension/blob/master/junit4-rule-utils-demo/src/test/java/com/github/starnowski/bmunit/extension/junit4/rule/utils/demo/IncrementIntValueThreadWithBMUnitMethodRuleTest.java)
 * Module "junit4-spock-spring-demo" contains use cases for junit and spock framework tests which use integration with spring framework
   * [Junit4 test with SpringRunner which use restTemplate component and "joins" mechanism](https://github.com/starnowski/bmunit-extension/blob/master/junit4-spock-spring-demo/src/test/java/com/github/starnowski/bmunit/extension/junit4/spock/spring/demo/controllers/UserControllerTest.java)
   * [Junit4 tests with SpringRunner which use "joins" and "rendezvous" mechanisms to test asynchronous operations](https://github.com/starnowski/bmunit-extension/blob/master/junit4-spock-spring-demo/src/test/java/com/github/starnowski/bmunit/extension/junit4/spock/spring/demo/services/MailServiceItTest.java)
