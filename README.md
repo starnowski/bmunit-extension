@@ -4,6 +4,7 @@
 
 Support of junit4 test rule to bmunit framework.
 
+* [Introduction](#introduction)
 * [How to attach project](#attach-project)
   * [Build project](#build-project)
   * [Dependencies for "junit4-rule"](#dependencies-for-junit4-rule)
@@ -13,8 +14,10 @@ Support of junit4 test rule to bmunit framework.
   * [How to use  "utils" module](#how-to-use-utils-module)
   * [Demonstrational tests](#demonstrational-tests)
 
+# Introduction
 Project contains junit4 rule which allows integration with byteman framework and use it in junit and spock tests.
 Enables to use bmunit library in test executed by SpringRunner and Spock tests runner.
+It also contains types which allows to operate on mechanisms like counters, rendezvous, joins in the tests methods.
 
 [attach-project]: #attach-project
 # How to attach project
