@@ -103,9 +103,10 @@ Project contains few modules with [tests](#demonstrational-tests) which demonstr
 ## How to use "utils" module 
 
 Module "utils" contains two components:
-* Object type "com.github.starnowski.bmunit.extension.utils.BMUnitHelperWithoutRuleReference" which extends type "org.jboss.byteman.rule.helper.Helper" which doesn't requied the rule object for initialize
-* Object type "com.github.starnowski.bmunit.extension.utils.BMUnitUtils" which contains static methods. Methods allows to operate on mechanism like counters, rendezvous, joins. Thanks to this methods you can manipulte on those objects from tests level
+* Object type "com.github.starnowski.bmunit.extension.utils.BMUnitHelperWithoutRuleReference" which extends type "org.jboss.byteman.rule.helper.Helper" which doesn't require  the rule object for initialize
+* Object type "com.github.starnowski.bmunit.extension.utils.BMUnitUtils" which contains static methods. Methods allows to operate on mechanism like counters, rendezvous, joins. Thanks to this methods you can manipulate on those objects from tests level
 
 [demonstrational-tests]: #demonstrational-tests
 ## Demonstrational tests
-* [Junit4 test without any runner](https://github.com/starnowski/bmunit-extension/blob/master/junit4-rule-demo/src/test/java/com/github/starnowski/bmunit/extension/junit4/rule/demo/UUIDFacadeWithBMUnitMethodRuleTest.java)
+* [Junit4 test without any runner (junit4-rule)](https://github.com/starnowski/bmunit-extension/blob/master/junit4-rule-demo/src/test/java/com/github/starnowski/bmunit/extension/junit4/rule/demo/UUIDFacadeWithBMUnitMethodRuleTest.java)
+* [Junit4 test with SpringRunner which use restTemplate component and "joins" mechanism (junit4-rule, utils)](https://github.com/starnowski/bmunit-extension/blob/master/junit4-spock-spring-demo/src/test/java/com/github/starnowski/bmunit/extension/junit4/spock/spring/demo/controllers/UserControllerTest.java)
