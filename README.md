@@ -98,7 +98,7 @@ public BMUnitMethodRule bmUnitMethodRule = new BMUnitMethodRule();
 
 ```
 
-Project contains few modules with [tests](#demonstrational-tests) which demonstrates how to use the BMUnitMethodRule rule with junit4 tests and spock framework tests:
+>Project contains few modules with [tests](#demonstrational-tests) which demonstrates how to use the BMUnitMethodRule rule with junit4 tests and spock framework tests:
 
 ## How to use "utils" module 
 
@@ -106,7 +106,13 @@ Module "utils" contains two components:
 * Object type "com.github.starnowski.bmunit.extension.utils.BMUnitHelperWithoutRuleReference" which extends type "org.jboss.byteman.rule.helper.Helper" which doesn't require  the rule object for initialize
 * Object type "com.github.starnowski.bmunit.extension.utils.BMUnitUtils" which contains static methods. Methods allows to operate on mechanism like counters, rendezvous, joins. Thanks to this methods you can manipulate on those objects from tests level
 
+>Project contains few modules with [tests](#demonstrational-tests) which demonstrates how to use components BMUnitHelperWithoutRuleReference and BMUnitUtils with junit4 tests and spock framework tests:
+
 [demonstrational-tests]: #demonstrational-tests
 ## Demonstrational tests
-* [Junit4 test without any runner (junit4-rule)](https://github.com/starnowski/bmunit-extension/blob/master/junit4-rule-demo/src/test/java/com/github/starnowski/bmunit/extension/junit4/rule/demo/UUIDFacadeWithBMUnitMethodRuleTest.java)
-* [Junit4 test with SpringRunner which use restTemplate component and "joins" mechanism (junit4-rule, utils)](https://github.com/starnowski/bmunit-extension/blob/master/junit4-spock-spring-demo/src/test/java/com/github/starnowski/bmunit/extension/junit4/spock/spring/demo/controllers/UserControllerTest.java)
+* Module "junit4-rule-demo" contains use case which demonstrate how use BMUnitMethodRule without BMUnitRunner
+  * [Junit4 test without any runner](https://github.com/starnowski/bmunit-extension/blob/master/junit4-rule-demo/src/test/java/com/github/starnowski/bmunit/extension/junit4/rule/demo/UUIDFacadeWithBMUnitMethodRuleTest.java)
+* Module "junit4-spock-spring-demo" contains use cases for junit and spock framework tests which use integration with spring framework
+  * [Junit4 test with SpringRunner which use restTemplate component and "joins" mechanism](https://github.com/starnowski/bmunit-extension/blob/master/junit4-spock-spring-demo/src/test/java/com/github/starnowski/bmunit/extension/junit4/spock/spring/demo/controllers/UserControllerTest.java)
+  * [Junit4 tests with SpringRunner which use "joins" and "rendezvous" mechanisms to test asynchronous operations](https://github.com/starnowski/bmunit-extension/blob/master/junit4-spock-spring-demo/src/test/java/com/github/starnowski/bmunit/extension/junit4/spock/spring/demo/services/MailServiceItTest.java)
+  * [Spock test with SpringRunner which use restTemplate component and "joins" mechanism](https://github.com/starnowski/bmunit-extension/blob/master/junit4-spock-spring-demo/src/test/groovy/com/github/starnowski/bmunit/extension/junit4/spock/spring/demo/controllers/UserControllerSpockItTest.groovy)
