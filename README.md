@@ -5,11 +5,11 @@
 Support of junit4 test rule to bmunit framework.
 
 * [Introduction](#introduction)
-* [How to attach project](#attach-project)
+* [How to attach project](#how-to-attach-project)
   * [Build project](#build-project)
   * [Dependencies for "junit4-rule"](#dependencies-for-junit4-rule)
   * [Dependencies for "utils"](#dependencies-for-utils)
-* [How to use project](#use-project)
+* [How to use project](#how-to-use-project)
   * [How to use "junit4-rule" module](#how-to-use-junit4-rule-module)
   * [How to use  "utils" module](#how-to-use-utils-module)
   * [Demonstrational tests](#demonstrational-tests)
@@ -19,7 +19,7 @@ Project contains junit4 rule which allows integration with byteman framework and
 Enables to use bmunit library in test executed by SpringRunner and Spock tests runner.
 It also contains types which allows to operate on mechanisms like counters, rendezvous, joins in the tests methods.
 
-[attach-project]: #attach-project
+[how-to-attach-project]: #how-to-attach-project
 # How to attach project
 [build-project]: #build-project 
 ## Build project
@@ -84,7 +84,7 @@ This means that you have to localy [build project](#build-project) by your own.
 >The module "com.github.starnowski.bmunit.extension:utils" is not deployed to any maven public repository yet.
 This means that you have to localy [build project](#build-project) by your own. 
 
-[use-project]: #use-project
+[how-to-use-project]: #how-to-use-project
 # How to use project
 
 ## How to use "junit4-rule" module  
