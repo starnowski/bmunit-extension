@@ -34,7 +34,7 @@ mvn clean install
         <dependency>
             <groupId>com.github.starnowski.bmunit.extension</groupId>
             <artifactId>junit4-rule</artifactId>
-            <version>0.2.0-SNAPSHOT</version>
+            <version>1.0.0-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -59,7 +59,7 @@ This means that you have to localy [build project](#build-project) by your own.
         <dependency>
             <groupId>com.github.starnowski.bmunit.extension</groupId>
             <artifactId>utils</artifactId>
-            <version>0.2.0-SNAPSHOT</version>
+            <version>1.0.0-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
         <dependency>
