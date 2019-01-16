@@ -2,8 +2,8 @@ package com.github.starnowski.bmunit.extension.utils;
 
 import org.jboss.byteman.rule.helper.Helper;
 
-public class BMUnitHelperWithoutRuleReference extends Helper{
-    protected BMUnitHelperWithoutRuleReference() {
+class BMUnitHelperWithoutRuleReference extends Helper{
+    BMUnitHelperWithoutRuleReference() {
         super(null);
     }
 
