@@ -1,6 +1,8 @@
 # bmunit-extension
 
 [![Build Status](https://travis-ci.org/starnowski/bmunit-extension.svg?branch=master)](https://travis-ci.org/starnowski/bmunit-extension)
+[![codecov](https://codecov.io/gh/starnowski/bmunit-extension/branch/master/graph/badge.svg)](https://codecov.io/gh/starnowski/bmunit-extension)
+
 
 Support of junit4 test rule to bmunit framework.
 
