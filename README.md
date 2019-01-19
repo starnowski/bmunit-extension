@@ -4,7 +4,7 @@
 [![codecov](https://codecov.io/gh/starnowski/bmunit-extension/branch/master/graph/badge.svg)](https://codecov.io/gh/starnowski/bmunit-extension)
 
 
-Support of junit4 test rule to bmunit framework.
+Support of junit4 test rule to [bmunit](https://developer.jboss.org/wiki/BMUnitUsingBytemanWithJUnitOrTestNGFromMavenAndAnt) framework.
 
 * [Introduction](#introduction)
 * [How to attach project](#how-to-attach-project)
@@ -17,7 +17,7 @@ Support of junit4 test rule to bmunit framework.
   * [Demonstrational tests](#demonstrational-tests)
 
 # Introduction
-Project contains junit4 rule which allows integration with byteman framework and use it in junit and spock tests.
+Project contains junit4 rule which allows integration with [byteman](http://byteman.jboss.org/) framework and use it in junit and spock tests.
 Enables to use bmunit library in test executed by SpringRunner and Spock tests runner.
 It also contains types which allows to operate on mechanisms like counters, rendezvous, joins in the tests methods.
 
