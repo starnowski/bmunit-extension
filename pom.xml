@@ -123,8 +123,10 @@
 
     <distributionManagement>
         <repository>
-            <id>internal</id>
-            <url>file://${project.build.directory}/mvn-repo</url>
+            <id>bintray-starnowski-bmunit-extension</id>
+            <name>starnowski-bmunit-extension</name>
+            <url>https://api.bintray.com/maven/starnowski/bmunit-extension/bmunit-extension/;publish=1</url>
         </repository>
     </distributionManagement>
+
 </project>
