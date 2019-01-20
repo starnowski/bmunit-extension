@@ -21,6 +21,11 @@
         <system>GitHub Issues</system>
     </issueManagement>
 
+    <scm>
+        <url>https://github.com/starnowski/bmunit-extension</url>
+        <connection>scm:git:git://github.com/starnowski/bmunit-extension.git</connection>
+    </scm>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <org.jboss.byteman.version>3.0.10</org.jboss.byteman.version>
