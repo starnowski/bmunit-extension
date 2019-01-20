@@ -122,8 +122,8 @@ Or add this information in maven "settings.xml" file.
             <scope>test</scope>
         </dependency>
 ```
->The module "com.github.starnowski.bmunit.extension:junit4-rule" is not deployed to any maven public repository yet.
-This means that you have to localy [build project](#build-project) by your own. 
+>To add module "com.github.starnowski.bmunit.extension:junit4-rule" as dependency in local maven repository, attach [repository](#add-maven-repository) information
+or [build project](#build-project) locally. 
 
 [dependencies-for-utils]: #dependencies-for-utils
 ## Dependencies for "utils"
@@ -153,8 +153,8 @@ This means that you have to localy [build project](#build-project) by your own.
             <scope>test</scope>
         </dependency>
 ```
->The module "com.github.starnowski.bmunit.extension:utils" is not deployed to any maven public repository yet.
-This means that you have to localy [build project](#build-project) by your own. 
+>To add module "com.github.starnowski.bmunit.extension:utils" as dependency in local maven repository, attach [repository](#add-maven-repository) information
+or [build project](#build-project) locally. 
 
 [build-project]: #build-project 
 ## Build project
