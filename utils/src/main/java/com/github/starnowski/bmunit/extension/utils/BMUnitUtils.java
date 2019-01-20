@@ -61,10 +61,10 @@ public class BMUnitUtils {
     }
 
     public static int getRendezvous(Object identifier, int expected) {
-        return 0;
+        return new BMUnitHelperWithoutRuleReference().getRendezvous(identifier, expected);
     }
 
     public static boolean isRendezvous(Object identifier, int expected) {
-        return false;
+        return new BMUnitHelperWithoutRuleReference().isRendezvous(identifier, expected);
     }
 }

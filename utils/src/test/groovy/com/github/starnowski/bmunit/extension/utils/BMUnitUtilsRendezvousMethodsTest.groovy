@@ -15,14 +15,14 @@ class BMUnitUtilsRendezvousMethodsTest extends Specification {
     static ExecutorService exec = Executors.newFixedThreadPool(MAX_THREAD_NUMBER,
             new ThreadFactory() {
                 Thread newThread(Runnable r) {
-                    Thread t = Executors.defaultThreadFactory().newThread(r);
-                    t.setDaemon(true);
-                    return t;
+                    Thread t = Executors.defaultThreadFactory().newThread(r)
+                    t.setDaemon(true)
+                    return t
                 }
             })
 
     @Unroll
-    def "should create #expectedRendezvous with expected number of threads #expectedThreadsNumber" ()
+    def "should create rendezvous with identifier #expectedRendezvous and expected number of threads #expectedThreadsNumber" ()
     {
         given:
             boolean rendezvousCreated = createRendezvous(expectedRendezvous, expectedThreadsNumber)
@@ -30,24 +30,24 @@ class BMUnitUtilsRendezvousMethodsTest extends Specification {
             Runnable[] threads = new Runnable[daemonThreadsCount]
             for (int i = 0; i < daemonThreadsCount; i++)
             {
-                threads[i] = new RendezvousConsumer(expectedRendezvous, expectedThreadsNumber)
+                threads[i] = new RendezvousConsumer(expectedRendezvous)
                 exec.execute(threads[i])
             }
-            int arrivedThreadsBeforeMainThredReachRendezvous = 0
-            int arrivedThreadsAfterMainThredReachRendezvous = 0
+            int arrivedThreadsBeforeMainThredReachRendezvous
+            int arrivedThreadsAfterMainThredReachRendezvous
             boolean rendezvousNotReached
             boolean rendezvousReached
 
         when:
             arrivedThreadsBeforeMainThredReachRendezvous = getRendezvous(expectedRendezvous, expectedThreadsNumber)
-            rendezvousNotReached = !isRendezvous(expectedThreadsNumber, expectedThreadsNumber)
-            rendezvous(expectedThreadsNumber)
+            rendezvousNotReached = isRendezvous(expectedRendezvous, expectedThreadsNumber)
+            rendezvous(expectedRendezvous)
             for (int i = 0; i < daemonThreadsCount; i++)
             {
                 threads[i].join()
             }
             arrivedThreadsAfterMainThredReachRendezvous = getRendezvous(expectedRendezvous, expectedThreadsNumber)
-            rendezvousReached = isRendezvous(expectedThreadsNumber, expectedThreadsNumber)
+            rendezvousReached = !isRendezvous(expectedRendezvous, expectedThreadsNumber)
 
         then:
             rendezvousCreated
@@ -55,37 +55,35 @@ class BMUnitUtilsRendezvousMethodsTest extends Specification {
         and: "number of arrived threads should be less then expected threads number before main thread reaches  rendezvous"
             arrivedThreadsBeforeMainThredReachRendezvous < expectedThreadsNumber
 
-        and: "static method #isRendezvous(Object, int) should return false before main thread reaches  rendezvous"
+        and: "static method #isRendezvous(Object, int) should return true before main thread reaches  rendezvous"
             rendezvousNotReached
 
-        and: "number of arrived threads should be equal to expected threads number after main thread reaches  rendezvous"
-            arrivedThreadsAfterMainThredReachRendezvous == expectedThreadsNumber
+        and: "static method #getRendezvous(Object, int) should return minus one for deleted rendezvous after main thread reaches rendezvous"
+            arrivedThreadsAfterMainThredReachRendezvous == -1
 
-        and: "static method #isRendezvous(Object, int) should return true after main thread reaches  rendezvous"
+        and: "static method #isRendezvous(Object, int) should return false for deleted rendezvous  after main thread reaches  rendezvous"
             rendezvousReached
 
         where:
             expectedRendezvous                  |   expectedThreadsNumber
             "BMUnitUtilsRendezvousMethodsTest1" |   2
-//            "BMUnitUtilsRendezvousMethodsTest2" |   2
-//            "BMUnitUtilsRendezvousMethodsTest3" |   3
-//            "BMUnitUtilsRendezvousMethodsTest4" |   3
-//            "BMUnitUtilsRendezvousMethodsTest5" |   5
-//            "BMUnitUtilsRendezvousMethodsTest6" |   4
+            "BMUnitUtilsRendezvousMethodsTest2" |   2
+            "BMUnitUtilsRendezvousMethodsTest3" |   3
+            "BMUnitUtilsRendezvousMethodsTest4" |   3
+            "BMUnitUtilsRendezvousMethodsTest5" |   5
+            "BMUnitUtilsRendezvousMethodsTest6" |   4
     }
 
     class RendezvousConsumer extends Thread {
 
         private final String rendezvousIdentifier
-        private final int expectedThreads
 
-        RendezvousConsumer(String rendezvousIdentifier, int expectedThreads) {
+        RendezvousConsumer(String rendezvousIdentifier) {
             this.rendezvousIdentifier = rendezvousIdentifier
-            this.expectedThreads = expectedThreads
         }
 
         void run() {
-            rendezvous(rendezvousIdentifier, expectedThreads)
+            rendezvous(rendezvousIdentifier)
         }
     }
 }
