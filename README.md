@@ -8,9 +8,12 @@ Support of junit4 test rule to [bmunit](https://developer.jboss.org/wiki/BMUnitU
 
 * [Introduction](#introduction)
 * [How to attach project](#how-to-attach-project)
-  * [Build project](#build-project)
+  * [Add maven repository](#add-maven-repository)
+    * [Repository in pom](#repository-in-pom)
+    * [Repository in settings](#repository-in-settings)
   * [Dependencies for "junit4-rule"](#dependencies-for-junit4-rule)
   * [Dependencies for "utils"](#dependencies-for-utils)
+  * [Build project](#build-project)
 * [How to use project](#how-to-use-project)
   * [How to use "junit4-rule" module](#how-to-use-junit4-rule-module)
   * [How to use  "utils" module](#how-to-use-utils-module)
@@ -28,6 +31,79 @@ It also contains types which allows to operate on mechanisms like counters, rend
 Build parent project with maven
 ```sh
 mvn clean install
+```
+
+[add-maven-repository]:(#add-maven-repository)
+## Add maven repository
+Project is published in [Bintray](https://bintray.com/starnowski/bmunit-extension/bmunit-extension) repository.
+To download dependencies it is required to add information about repository in "pom.xml" file.
+
+[repository-in-pom]:(#repository-in-pom)
+###### Repository in pom
+```xml
+<project>
+...
+    <repositories>
+        <repository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>bintray-starnowski-bmunit-extension</id>
+            <name>bintray</name>
+            <url>https://dl.bintray.com/starnowski/bmunit-extension</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>bintray-starnowski-bmunit-extension</id>
+            <name>bintray-plugins</name>
+            <url>https://dl.bintray.com/starnowski/bmunit-extension</url>
+        </pluginRepository>
+    </pluginRepositories>
+...
+</project>
+```
+Or add this information in maven "settings.xml" file.
+
+[repository-in-settings]:(#repository-in-settings)
+###### Repository in settings
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<settings xsi:schemaLocation='http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd'
+          xmlns='http://maven.apache.org/SETTINGS/1.0.0' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>
+    
+    <profiles>
+        <profile>
+            <repositories>
+                <repository>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                    <id>bintray-starnowski-bmunit-extension</id>
+                    <name>bintray</name>
+                    <url>https://dl.bintray.com/starnowski/bmunit-extension</url>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                    <id>bintray-starnowski-bmunit-extension</id>
+                    <name>bintray-plugins</name>
+                    <url>https://dl.bintray.com/starnowski/bmunit-extension</url>
+                </pluginRepository>
+            </pluginRepositories>
+            <id>bintray</id>
+        </profile>
+    </profiles>
+    <activeProfiles>
+        <activeProfile>bintray</activeProfile>
+    </activeProfiles>
+</settings>
 ```
 
 [dependencies-for-junit4-rule]: #dependencies-for-junit4-rule
