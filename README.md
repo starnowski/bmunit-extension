@@ -2,9 +2,9 @@
 
 [![Build Status](https://travis-ci.org/starnowski/bmunit-extension.svg?branch=master)](https://travis-ci.org/starnowski/bmunit-extension)
 [![codecov](https://codecov.io/gh/starnowski/bmunit-extension/branch/master/graph/badge.svg)](https://codecov.io/gh/starnowski/bmunit-extension)
+[![Download](https://api.bintray.com/packages/starnowski/bmunit-extension/bmunit-extension/images/download.svg?version=1.0.0) ](https://bintray.com/starnowski/bmunit-extension/bmunit-extension/1.0.0/link)
 
-
-Support of junit4 test rule to [bmunit](https://developer.jboss.org/wiki/BMUnitUsingBytemanWithJUnitOrTestNGFromMavenAndAnt) framework.
+Support of junit4 rule for the [bmunit](https://developer.jboss.org/wiki/BMUnitUsingBytemanWithJUnitOrTestNGFromMavenAndAnt) library.
 
 * [Introduction](#introduction)
 * [How to attach project](#how-to-attach-project)
