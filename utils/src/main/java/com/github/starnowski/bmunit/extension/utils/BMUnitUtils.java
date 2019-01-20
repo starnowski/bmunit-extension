@@ -59,4 +59,12 @@ public class BMUnitUtils {
     {
         return new BMUnitHelperWithoutRuleReference().rendezvous(identifier);
     }
+
+    public static int getRendezvous(Object identifier, int expected) {
+        return new BMUnitHelperWithoutRuleReference().getRendezvous(identifier, expected);
+    }
+
+    public static boolean isRendezvous(Object identifier, int expected) {
+        return new BMUnitHelperWithoutRuleReference().isRendezvous(identifier, expected);
+    }
 }
