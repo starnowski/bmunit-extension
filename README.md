@@ -26,12 +26,6 @@ It also contains types which allows to operate on mechanisms like counters, rend
 
 [how-to-attach-project]: #how-to-attach-project
 # How to attach project
-[build-project]: #build-project 
-## Build project
-Build parent project with maven
-```sh
-mvn clean install
-```
 
 [add-maven-repository]:(#add-maven-repository)
 ## Add maven repository
@@ -161,6 +155,13 @@ This means that you have to localy [build project](#build-project) by your own.
 ```
 >The module "com.github.starnowski.bmunit.extension:utils" is not deployed to any maven public repository yet.
 This means that you have to localy [build project](#build-project) by your own. 
+
+[build-project]: #build-project 
+## Build project
+Build parent project with maven
+```sh
+mvn clean install
+```
 
 [how-to-use-project]: #how-to-use-project
 # How to use project
