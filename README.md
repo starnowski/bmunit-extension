@@ -4,7 +4,7 @@
 [![codecov](https://codecov.io/gh/starnowski/bmunit-extension/branch/master/graph/badge.svg)](https://codecov.io/gh/starnowski/bmunit-extension)
 [![Download](https://api.bintray.com/packages/starnowski/bmunit-extension/bmunit-extension/images/download.svg?version=1.0.0) ](https://bintray.com/starnowski/bmunit-extension/bmunit-extension/1.0.0/link)
 
-Support of junit4 rule for the [bmunit](https://developer.jboss.org/wiki/BMUnitUsingBytemanWithJUnitOrTestNGFromMavenAndAnt) library.
+Support of junit4 test rule to [bmunit](https://developer.jboss.org/wiki/BMUnitUsingBytemanWithJUnitOrTestNGFromMavenAndAnt) framework.
 
 * [Introduction](#introduction)
 * [How to attach project](#how-to-attach-project)
@@ -36,7 +36,7 @@ mvn clean install
         <dependency>
             <groupId>com.github.starnowski.bmunit.extension</groupId>
             <artifactId>junit4-rule</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>1.0.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -61,7 +61,7 @@ This means that you have to localy [build project](#build-project) by your own.
         <dependency>
             <groupId>com.github.starnowski.bmunit.extension</groupId>
             <artifactId>utils</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>1.0.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>
