@@ -32,6 +32,7 @@ It also contains types which allows to operate on mechanisms like counters, rend
 ## Add maven repository
 Project is published in [Bintray](https://bintray.com/starnowski/bmunit-extension/bmunit-extension) repository.
 To download dependencies it is required to add information about repository in "pom.xml" file.
+Project is also available from [other](#other-maven-repositories) repositories.
 
 [repository-in-pom]:(#repository-in-pom)
 ###### Repository in pom
@@ -100,7 +101,6 @@ Or add this information in maven "settings.xml" file.
     </activeProfiles>
 </settings>
 ```
->Project is also available from [other](#other-maven-repositories) repositories.
 
 [dependencies-for-junit4-rule]: #dependencies-for-junit4-rule
 ## Dependencies for "junit4-rule"
