@@ -206,7 +206,8 @@ Module "utils" contains object type "com.github.starnowski.bmunit.extension.util
 
 [other-maven-repositories]:(#other-maven-repositories)
 ## Other maven repositories
-. To use it you have to attach repository in project descriptor or the maven settings. Project is also published in [jcenter]:(https://bintray.com/bintray/jcenter) repository
+Project is also published in [jcenter](https://bintray.com/bintray/jcenter) repository
+To use it you have to attach repository in project descriptor or the maven settings.
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <settings xsi:schemaLocation='http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd'
