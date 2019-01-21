@@ -18,6 +18,7 @@ Support of junit4 rule for the [bmunit](https://developer.jboss.org/wiki/BMUnitU
   * [How to use "junit4-rule" module](#how-to-use-junit4-rule-module)
   * [How to use  "utils" module](#how-to-use-utils-module)
   * [Demonstrational tests](#demonstrational-tests)
+* [Other maven repositories](#other-maven-repositories)
 
 # Introduction
 Project contains junit4 rule which allows integration with [byteman](http://byteman.jboss.org/) framework and use it in junit and spock tests.
@@ -31,6 +32,7 @@ It also contains types which allows to operate on mechanisms like counters, rend
 ## Add maven repository
 Project is published in [Bintray](https://bintray.com/starnowski/bmunit-extension/bmunit-extension) repository.
 To download dependencies it is required to add information about repository in "pom.xml" file.
+Project is also available from [other](#other-maven-repositories) repositories.
 
 [repository-in-pom]:(#repository-in-pom)
 ###### Repository in pom
@@ -200,3 +202,44 @@ Module "utils" contains object type "com.github.starnowski.bmunit.extension.util
   * [Spock test which use BMUnitMethodRule to override static method](https://github.com/starnowski/bmunit-extension/blob/master/junit4-spock-spring-demo/src/test/groovy/com/github/starnowski/bmunit/extension/junit4/spock/spring/demo/util/RandomHashGeneratorTest.groovy)
   * [Spock test with SpringRunner which use "joins" mechanism](https://github.com/starnowski/bmunit-extension/blob/master/junit4-spock-spring-demo/src/test/groovy/com/github/starnowski/bmunit/extension/junit4/spock/spring/demo/services/MailServiceSpockItTest.groovy)
   * [Spock test with SpringRunner which use restTemplate component and "joins" mechanism](https://github.com/starnowski/bmunit-extension/blob/master/junit4-spock-spring-demo/src/test/groovy/com/github/starnowski/bmunit/extension/junit4/spock/spring/demo/controllers/UserControllerSpockItTest.groovy)
+
+
+[other-maven-repositories]:(#other-maven-repositories)
+## Other maven repositories
+Project is also published in [jcenter](https://bintray.com/bintray/jcenter) repository.
+To use it you have to attach repository in project descriptor or the maven settings.
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<settings xsi:schemaLocation='http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd'
+          xmlns='http://maven.apache.org/SETTINGS/1.0.0' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>
+    
+    <profiles>
+        <profile>
+            <repositories>
+                <repository>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                    <id>central</id>
+                    <name>bintray</name>
+                    <url>https://jcenter.bintray.com</url>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                    <id>central</id>
+                    <name>bintray-plugins</name>
+                    <url>https://jcenter.bintray.com</url>
+                </pluginRepository>
+            </pluginRepositories>
+            <id>bintray</id>
+        </profile>
+    </profiles>
+    <activeProfiles>
+        <activeProfile>bintray</activeProfile>
+    </activeProfiles>
+</settings>
+```
