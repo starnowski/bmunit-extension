@@ -30,6 +30,7 @@
         <junit.junit.version>4.12</junit.junit.version>
         <spock.core.version>1.1-groovy-2.4</spock.core.version>
         <bmunit.extension.project.version>0.1.0</bmunit.extension.project.version>
+        <license.dir>${basedir}</license.dir>
     </properties>
 
     <dependencyManagement>
@@ -132,6 +133,40 @@
                     <configuration>
                         <tagNameFormat>v@{project.version}</tagNameFormat>
                     </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>com.mycila.maven-license-plugin</groupId>
+                    <artifactId>maven-license-plugin</artifactId>
+                    <version>1.10.b1</version>
+                    <configuration>
+                        <header>${license.dir}/license.txt</header>
+                        <properties>
+                            <project>${project.name}</project>
+                            <founder>${project.organization.name}</founder>
+                            <year>${project.inceptionYear}</year>
+                        </properties>
+                        <includes>
+                            <include>src/main/java/**</include>
+                        </includes>
+                        <excludes>
+                            <exclude>**/package-info.java</exclude>
+                        </excludes>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>format</goal>
+                            </goals>
+                            <phase>process-sources</phase>
+                        </execution>
+                    </executions>
+                    <dependencies>
+                        <dependency>
+                            <groupId>com.mycila</groupId>
+                            <artifactId>licenses</artifactId>
+                            <version>1</version>
+                        </dependency>
+                    </dependencies>
                 </plugin>
             </plugins>
         </pluginManagement>

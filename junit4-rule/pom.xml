@@ -9,6 +9,10 @@
 
     <artifactId>junit4-rule</artifactId>
 
+    <properties>
+        <license.dir>${project.parent.basedir}</license.dir>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.jboss.byteman</groupId>
