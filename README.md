@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/starnowski/bmunit-extension.svg?branch=master)](https://travis-ci.org/starnowski/bmunit-extension)
 [![codecov](https://codecov.io/gh/starnowski/bmunit-extension/branch/master/graph/badge.svg)](https://codecov.io/gh/starnowski/bmunit-extension)
-[ ![Download](https://api.bintray.com/packages/starnowski/bmunit-extension/bmunit-extension/images/download.svg?version=1.0.0) ](https://bintray.com/starnowski/bmunit-extension/bmunit-extension/1.0.0/link)
+[![Download](https://api.bintray.com/packages/starnowski/bmunit-extension/bmunit-extension/images/download.svg?version=1.0.1) ](https://bintray.com/starnowski/bmunit-extension/bmunit-extension/1.0.1/link)
 
 Support of junit4 rule for the [bmunit](https://developer.jboss.org/wiki/BMUnitUsingBytemanWithJUnitOrTestNGFromMavenAndAnt) library.
 
@@ -108,7 +108,7 @@ Or add this information in maven "settings.xml" file.
         <dependency>
             <groupId>com.github.starnowski.bmunit.extension</groupId>
             <artifactId>junit4-rule</artifactId>
-            <version>1.0.0</version>
+            <version>1.0.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -133,7 +133,7 @@ or [build project](#build-project) locally.
         <dependency>
             <groupId>com.github.starnowski.bmunit.extension</groupId>
             <artifactId>utils</artifactId>
-            <version>1.0.0</version>
+            <version>1.0.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
