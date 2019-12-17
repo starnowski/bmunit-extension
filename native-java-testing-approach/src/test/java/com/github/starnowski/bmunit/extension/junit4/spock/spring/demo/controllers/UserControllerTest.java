@@ -1,13 +1,10 @@
 package com.github.starnowski.bmunit.extension.junit4.spock.spring.demo.controllers;
 
-import com.github.starnowski.bmunit.extension.junit4.rule.BMUnitMethodRule;
+import com.github.starnowski.bmunit.extension.junit4.spock.spring.demo.concurrent.IApplicationCountDownLatch;
 import com.github.starnowski.bmunit.extension.junit4.spock.spring.demo.dto.UserDto;
 import com.github.starnowski.bmunit.extension.junit4.spock.spring.demo.repositories.UserRepository;
 import com.icegreen.greenmail.junit.GreenMailRule;
 import com.icegreen.greenmail.util.ServerSetupTest;
-import org.jboss.byteman.contrib.bmunit.BMRule;
-import org.jboss.byteman.contrib.bmunit.BMRules;
-import org.jboss.byteman.contrib.bmunit.BMUnitConfig;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,8 +23,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 import static com.github.starnowski.bmunit.extension.junit4.spock.spring.demo.util.DemoTestUtils.CLEAR_DATABASE_SCRIPT_PATH;
-import static com.github.starnowski.bmunit.extension.utils.BMUnitUtils.createJoin;
-import static com.github.starnowski.bmunit.extension.utils.BMUnitUtils.joinWait;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
 import static org.springframework.test.context.jdbc.Sql.ExecutionPhase.AFTER_TEST_METHOD;
@@ -46,8 +41,6 @@ import static org.springframework.test.context.jdbc.SqlConfig.TransactionMode.IS
 public class UserControllerTest {
 
     @Rule
-    public BMUnitMethodRule bmUnitMethodRule = new BMUnitMethodRule();
-    @Rule
     public final GreenMailRule greenMail = new GreenMailRule(ServerSetupTest.SMTP_IMAP);
 
     @Autowired
@@ -56,27 +49,21 @@ public class UserControllerTest {
     TestRestTemplate restTemplate;
     @LocalServerPort
     private int port;
+    @Autowired
+    private IApplicationCountDownLatch applicationCountDownLatch;
 
     @Test
-    @BMUnitConfig(verbose = true, bmunitVerbose = true)
-    @BMRules(rules = {
-            @BMRule(name = "signal thread waiting for mutex \"UserControllerTest.shouldCreateNewUserAndSendMailMessageInAsyncOperation\"",
-                    targetClass = "com.github.starnowski.bmunit.extension.junit4.spock.spring.demo.services.MailService",
-                    targetMethod = "handleNewUserEvent(com.github.starnowski.bmunit.extension.junit4.spock.spring.demo.util.NewUserEvent)",
-                    targetLocation = "AT EXIT",
-                    action = "joinEnlist(\"UserControllerTest.shouldCreateNewUserAndSendMailMessageInAsyncOperation\")")
-    })
-    public void shouldCreateNewUserAndSendMailMessageInAsyncOperation() throws IOException, URISyntaxException, MessagingException {
+    public void shouldCreateNewUserAndSendMailMessageInAsyncOperation() throws IOException, URISyntaxException, MessagingException, InterruptedException {
         // given
         String expectedEmail = "szymon.doe@nosuch.domain.com";
         assertThat(userRepository.findByEmail(expectedEmail)).isNull();
         UserDto dto = new UserDto().setEmail(expectedEmail).setPassword("XXX");
-        createJoin("UserControllerTest.shouldCreateNewUserAndSendMailMessageInAsyncOperation", 1);
+        applicationCountDownLatch.mailServiceResetCountDownLatchForHandleNewUserEventMethod();
         assertEquals(0, greenMail.getReceivedMessages().length);
 
         // when
         UserDto responseEntity = restTemplate.postForObject(new URI("http://localhost:" + port + "/users"), (Object) dto, UserDto.class);
-        joinWait("UserControllerTest.shouldCreateNewUserAndSendMailMessageInAsyncOperation", 1, 15000);
+        applicationCountDownLatch.mailServiceWaitForCountDownLatchInHandleNewUserEventMethod(15000);
 
         // then
         assertThat(userRepository.findByEmail(expectedEmail)).isNotNull();

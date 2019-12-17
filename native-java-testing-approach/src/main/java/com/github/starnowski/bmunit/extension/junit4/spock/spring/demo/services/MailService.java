@@ -1,5 +1,6 @@
 package com.github.starnowski.bmunit.extension.junit4.spock.spring.demo.services;
 
+import com.github.starnowski.bmunit.extension.junit4.spock.spring.demo.concurrent.IApplicationCountDownLatch;
 import com.github.starnowski.bmunit.extension.junit4.spock.spring.demo.dto.UserDto;
 import com.github.starnowski.bmunit.extension.junit4.spock.spring.demo.model.MailMessage;
 import com.github.starnowski.bmunit.extension.junit4.spock.spring.demo.repositories.MailMessageRepository;
@@ -22,6 +23,8 @@ public class MailService {
     private JavaMailSender emailSender;
     @Autowired
     private ApplicationEventPublisher applicationEventPublisher;
+    @Autowired
+    private IApplicationCountDownLatch applicationCountDownLatch;
 
     @Transactional
     public void sendMessageToNewUser(UserDto dto, String emailVerificationHash)
@@ -43,5 +46,6 @@ public class MailService {
         message.setSubject(newUserEvent.getMailMessage().getMailSubject());
         message.setText(newUserEvent.getMailMessage().getMailContent());
         emailSender.send(message);
+        applicationCountDownLatch.mailServiceExecuteCountDownInHandleNewUserEventMethod();
     }
 }
