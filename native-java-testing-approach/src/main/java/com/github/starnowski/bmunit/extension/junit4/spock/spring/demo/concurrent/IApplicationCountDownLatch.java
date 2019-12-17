@@ -7,4 +7,6 @@ public interface IApplicationCountDownLatch {
     void mailServiceWaitForCountDownLatchInHandleNewUserEventMethod(int milliseconds) throws InterruptedException;
 
     void mailServiceResetCountDownLatchForHandleNewUserEventMethod();
+
+    void mailServiceClearCountDownLatchForHandleNewUserEventMethod();
 }

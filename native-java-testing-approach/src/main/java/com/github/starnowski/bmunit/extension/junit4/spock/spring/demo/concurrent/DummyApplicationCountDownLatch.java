@@ -12,16 +12,25 @@ public class DummyApplicationCountDownLatch implements IApplicationCountDownLatc
 
     @Override
     public void mailServiceExecuteCountDownInHandleNewUserEventMethod() {
-        mailServiceCountDownLatch.countDown();
+        if (mailServiceCountDownLatch != null) {
+            mailServiceCountDownLatch.countDown();
+        }
     }
 
     @Override
     public void mailServiceWaitForCountDownLatchInHandleNewUserEventMethod(int milliseconds) throws InterruptedException {
-        mailServiceCountDownLatch.await(milliseconds, TimeUnit.MILLISECONDS);
+        if (mailServiceCountDownLatch != null) {
+            mailServiceCountDownLatch.await(milliseconds, TimeUnit.MILLISECONDS);
+        }
     }
 
     @Override
     public void mailServiceResetCountDownLatchForHandleNewUserEventMethod() {
         mailServiceCountDownLatch = new CountDownLatch(1);
+    }
+
+    @Override
+    public void mailServiceClearCountDownLatchForHandleNewUserEventMethod() {
+        mailServiceCountDownLatch = null;
     }
 }

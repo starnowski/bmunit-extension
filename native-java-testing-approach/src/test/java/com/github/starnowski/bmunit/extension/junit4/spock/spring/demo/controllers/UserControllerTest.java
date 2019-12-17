@@ -5,6 +5,7 @@ import com.github.starnowski.bmunit.extension.junit4.spock.spring.demo.dto.UserD
 import com.github.starnowski.bmunit.extension.junit4.spock.spring.demo.repositories.UserRepository;
 import com.icegreen.greenmail.junit.GreenMailRule;
 import com.icegreen.greenmail.util.ServerSetupTest;
+import org.junit.After;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -51,6 +52,12 @@ public class UserControllerTest {
     private int port;
     @Autowired
     private IApplicationCountDownLatch applicationCountDownLatch;
+
+    @After
+    public void tearDown()
+    {
+        applicationCountDownLatch.mailServiceClearCountDownLatchForHandleNewUserEventMethod();
+    }
 
     @Test
     public void shouldCreateNewUserAndSendMailMessageInAsyncOperation() throws IOException, URISyntaxException, MessagingException, InterruptedException {
