@@ -19,6 +19,7 @@ Support of junit4 rule for the [bmunit](https://developer.jboss.org/wiki/BMUnitU
   * [How to use  "utils" module](#how-to-use-utils-module)
   * [Demonstrational tests](#demonstrational-tests)
 * [Other maven repositories](#other-maven-repositories)
+* [Issues](#issues)
 
 # Introduction
 Project contains junit4 rule which allows integration with [byteman](http://byteman.jboss.org/) framework and use it in junit and spock tests.
@@ -243,3 +244,7 @@ To use it you have to attach repository in project descriptor or the maven setti
     </activeProfiles>
 </settings>
 ```
+# Issues
+* If you facing any issues related with project usage please check on [wiki page](https://github.com/starnowski/bmunit-extension/wiki/FAQ
+) if there is already a solution for your problem
+* Any new issues please report in GitHub site
