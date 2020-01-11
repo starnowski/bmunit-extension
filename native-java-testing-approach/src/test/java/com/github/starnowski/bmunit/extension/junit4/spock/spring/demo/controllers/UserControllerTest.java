@@ -19,19 +19,19 @@ import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.mail.MessagingException;
-import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
 import static com.github.starnowski.bmunit.extension.junit4.spock.spring.demo.util.DemoTestUtils.CLEAR_DATABASE_SCRIPT_PATH;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
+import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 import static org.springframework.test.context.jdbc.Sql.ExecutionPhase.AFTER_TEST_METHOD;
 import static org.springframework.test.context.jdbc.Sql.ExecutionPhase.BEFORE_TEST_METHOD;
 import static org.springframework.test.context.jdbc.SqlConfig.TransactionMode.ISOLATED;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment=SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment= RANDOM_PORT)
 @Sql(value = CLEAR_DATABASE_SCRIPT_PATH,
         config = @SqlConfig(transactionMode = ISOLATED),
         executionPhase = BEFORE_TEST_METHOD)
@@ -60,7 +60,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void shouldCreateNewUserAndSendMailMessageInAsyncOperation() throws IOException, URISyntaxException, MessagingException, InterruptedException {
+    public void shouldCreateNewUserAndSendMailMessageInAsyncOperation() throws URISyntaxException, MessagingException, InterruptedException {
         // given
         String expectedEmail = "szymon.doe@nosuch.domain.com";
         assertThat(userRepository.findByEmail(expectedEmail)).isNull();
@@ -69,7 +69,7 @@ public class UserControllerTest {
         assertEquals(0, greenMail.getReceivedMessages().length);
 
         // when
-        UserDto responseEntity = restTemplate.postForObject(new URI("http://localhost:" + port + "/users"), (Object) dto, UserDto.class);
+        restTemplate.postForObject(new URI("http://localhost:" + port + "/users"), (Object) dto, UserDto.class);
         applicationCountDownLatch.mailServiceWaitForCountDownLatchInHandleNewUserEventMethod(15000);
 
         // then
