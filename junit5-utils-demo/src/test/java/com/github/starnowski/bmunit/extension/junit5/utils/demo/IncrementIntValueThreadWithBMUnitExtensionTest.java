@@ -2,14 +2,17 @@ package com.github.starnowski.bmunit.extension.junit5.utils.demo;
 
 import org.jboss.byteman.contrib.bmunit.BMRule;
 import org.jboss.byteman.contrib.bmunit.BMRules;
-import org.junit.Test;
+import org.jboss.byteman.contrib.bmunit.WithByteman;
+import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.*;
+import static com.github.starnowski.bmunit.extension.utils.BMUnitUtils.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@WithByteman
 class IncrementIntValueThreadWithBMUnitExtensionTest {
+
     @Test
     @BMRule(name = "should wait until all threads completed",
             targetClass = "com.github.starnowski.bmunit.extension.junit5.utils.demo.IncrementIntValueThread",
