@@ -11,6 +11,7 @@
         <module>junit4-rule-demo</module>
         <module>junit4-rule-utils-demo</module>
         <module>junit4-spock-spring-demo</module>
+        <module>junit5-utils-demo</module>
     </modules>
     <packaging>pom</packaging>
 
