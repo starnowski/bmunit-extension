@@ -1,19 +1,40 @@
-language: java
-jdk:
-  - oraclejdk8
-sudo: false
-cache:
-  directories:
-    - $HOME/.m2
-script: mvn clean install
-dist: trusty
+stages:
+  - "tests for compatible with the byteman 4"
+  - "integration tests"
 
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
+jobs:
+  include:
+    - stage: "tests for compatible with the byteman 4"
+      language: java
+      jdk:
+        - oraclejdk8
+      sudo: false
+      cache:
+        directories:
+          - $HOME/.m2
+      script: mvn clean install -P !main,byteman4_compatible
+      dist: trusty
 
-deploy:
-  provider: script
-  script: bash .travis/release.sh
-  on:
-    tags: true
-    branch: release
+      after_success:
+        - bash <(curl -s https://codecov.io/bash)
+
+    - stage: "integration tests"
+      language: java
+      jdk:
+        - oraclejdk8
+      sudo: false
+      cache:
+        directories:
+          - $HOME/.m2
+      script: mvn clean install
+      dist: trusty
+
+      after_success:
+        - bash <(curl -s https://codecov.io/bash)
+
+      deploy:
+        provider: script
+        script: bash .travis/release.sh
+        on:
+          tags: true
+          branch: release
