@@ -15,9 +15,6 @@ jobs:
       script: mvn clean install -P !main,byteman4_compatible
       dist: trusty
 
-      after_success:
-        - bash <(curl -s https://codecov.io/bash)
-
     - stage: "integration tests"
       language: java
       jdk:
