@@ -1,8 +1,7 @@
 package com.github.starnowski.bmunit.extension.junit5.spring.demo.controllers;
 
-import com.github.starnowski.bmunit.extension.junit4.rule.BMUnitMethodRule;
-import com.github.starnowski.bmunit.extension.junit4.spock.spring.demo.dto.UserDto;
-import com.github.starnowski.bmunit.extension.junit4.spock.spring.demo.repositories.UserRepository;
+import com.github.starnowski.bmunit.extension.junit5.spring.demo.dto.UserDto;
+import com.github.starnowski.bmunit.extension.junit5.spring.demo.repositories.UserRepository;
 import com.icegreen.greenmail.junit.GreenMailRule;
 import com.icegreen.greenmail.util.ServerSetupTest;
 import org.jboss.byteman.contrib.bmunit.BMRule;
@@ -25,7 +24,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-import static com.github.starnowski.bmunit.extension.junit4.spock.spring.demo.util.DemoTestUtils.CLEAR_DATABASE_SCRIPT_PATH;
+import static com.github.starnowski.bmunit.extension.junit5.spring.demo.util.DemoTestUtils.CLEAR_DATABASE_SCRIPT_PATH;
 import static com.github.starnowski.bmunit.extension.utils.BMUnitUtils.createJoin;
 import static com.github.starnowski.bmunit.extension.utils.BMUnitUtils.joinWait;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -46,8 +45,6 @@ import static org.springframework.test.context.jdbc.SqlConfig.TransactionMode.IS
 public class UserControllerTest {
 
     @Rule
-    public BMUnitMethodRule bmUnitMethodRule = new BMUnitMethodRule();
-    @Rule
     public final GreenMailRule greenMail = new GreenMailRule(ServerSetupTest.SMTP_IMAP);
 
     @Autowired
@@ -61,8 +58,8 @@ public class UserControllerTest {
     @BMUnitConfig(verbose = true, bmunitVerbose = true)
     @BMRules(rules = {
             @BMRule(name = "signal thread waiting for mutex \"UserControllerTest.shouldCreateNewUserAndSendMailMessageInAsyncOperation\"",
-                    targetClass = "com.github.starnowski.bmunit.extension.junit4.spock.spring.demo.services.MailService",
-                    targetMethod = "handleNewUserEvent(com.github.starnowski.bmunit.extension.junit4.spock.spring.demo.util.NewUserEvent)",
+                    targetClass = "com.github.starnowski.bmunit.extension.junit5.spring.demo.services.MailService",
+                    targetMethod = "handleNewUserEvent(com.github.starnowski.bmunit.extension.junit5.spring.demo.util.NewUserEvent)",
                     targetLocation = "AT EXIT",
                     action = "joinEnlist(\"UserControllerTest.shouldCreateNewUserAndSendMailMessageInAsyncOperation\")")
     })
