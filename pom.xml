@@ -5,15 +5,46 @@
     <groupId>com.github.starnowski.bmunit.extension</groupId>
     <artifactId>parent</artifactId>
     <version>1.1.0-SNAPSHOT</version>
-    <modules>
-        <module>junit4-rule</module>
-        <module>utils</module>
-        <module>junit4-rule-demo</module>
-        <module>junit4-rule-utils-demo</module>
-        <module>junit4-spock-spring-demo</module>
-        <module>junit5-utils-demo</module>
-    </modules>
     <packaging>pom</packaging>
+
+    <profiles>
+        <profile>
+            <id>main</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <modules>
+                <module>junit4-rule</module>
+                <module>utils</module>
+                <module>junit4-rule-demo</module>
+                <module>junit4-rule-utils-demo</module>
+                <module>junit4-spock-spring-demo</module>
+            </modules>
+            <properties>
+                <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+                <org.jboss.byteman.version>3.0.10</org.jboss.byteman.version>
+                <junit.junit.version>4.12</junit.junit.version>
+                <spock.core.version>1.1-groovy-2.4</spock.core.version>
+                <bmunit.extension.project.version>0.1.0</bmunit.extension.project.version>
+                <license.dir>${basedir}</license.dir>
+            </properties>
+        </profile>
+        <profile>
+            <id>byteman4_compatible</id>
+            <modules>
+                <module>utils</module>
+                <module>junit5-utils-demo</module>
+            </modules>
+            <properties>
+                <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+                <org.jboss.byteman.version>4.0.10</org.jboss.byteman.version>
+                <junit.junit.version>4.12</junit.junit.version>
+                <spock.core.version>1.1-groovy-2.4</spock.core.version>
+                <bmunit.extension.project.version>0.1.0</bmunit.extension.project.version>
+                <license.dir>${basedir}</license.dir>
+            </properties>
+        </profile>
+    </profiles>
 
     <issueManagement>
         <url>https://github.com/starnowski/bmunit-extension/issues</url>
