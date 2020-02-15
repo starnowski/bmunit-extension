@@ -34,6 +34,7 @@
             <modules>
                 <module>utils</module>
                 <module>junit5-utils-demo</module>
+                <module>junit5-spring-demo</module>
             </modules>
             <properties>
                 <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
