@@ -204,7 +204,7 @@ The module was also tested for compatibility with the Byteman in version 4.10.0.
   * [Spock test which use BMUnitMethodRule to override static method](https://github.com/starnowski/bmunit-extension/blob/master/junit4-spock-spring-demo/src/test/groovy/com/github/starnowski/bmunit/extension/junit4/spock/spring/demo/util/RandomHashGeneratorTest.groovy)
   * [Spock test with SpringRunner which use "joins" mechanism](https://github.com/starnowski/bmunit-extension/blob/master/junit4-spock-spring-demo/src/test/groovy/com/github/starnowski/bmunit/extension/junit4/spock/spring/demo/services/MailServiceSpockItTest.groovy)
   * [Spock test with SpringRunner which use restTemplate component and "joins" mechanism](https://github.com/starnowski/bmunit-extension/blob/master/junit4-spock-spring-demo/src/test/groovy/com/github/starnowski/bmunit/extension/junit4/spock/spring/demo/controllers/UserControllerSpockItTest.groovy)
-
+  * [JUnit5 test which use restTemplate component and "joins" mechanism](https://github.com/starnowski/bmunit-extension/blob/feature/70_utils_module_note/junit5-spring-demo/src/test/java/com/github/starnowski/bmunit/extension/junit5/spring/demo/controllers/UserControllerTest.java)
 
 [other-maven-repositories]:(#other-maven-repositories)
 ## Other maven repositories
