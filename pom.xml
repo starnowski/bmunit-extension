@@ -50,6 +50,15 @@
                 <junit.junit.version>4.12</junit.junit.version>
             </properties>
         </profile>
+        <profile>
+            <id>native_java_mechanisms</id>
+            <modules>
+                <module>native-java-testing-approach</module>
+            </modules>
+            <properties>
+                <junit.junit.version>4.12</junit.junit.version>
+            </properties>
+        </profile>
     </profiles>
 
     <issueManagement>
