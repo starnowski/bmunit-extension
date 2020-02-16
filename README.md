@@ -189,8 +189,8 @@ public BMUnitMethodRule bmUnitMethodRule = new BMUnitMethodRule();
 ## How to use "utils" module 
 
 Module "utils" contains object type "com.github.starnowski.bmunit.extension.utils.BMUnitUtils" which contains static methods. Methods allows to operate on mechanism like counters, rendezvous, joins. Thanks to this methods you can manipulate on those objects from tests level
-
->Project contains few modules with [tests](#demonstrational-tests) which demonstrates how to use static methods of type BMUnitUtils with junit4 tests and spock framework tests:
+The module was also tested for compatibility with the Byteman in version 4.10.0. It means that the module can be used together with the JUnit 5 library.
+>Project contains few modules with [tests](#demonstrational-tests) which demonstrates how to use static methods of type BMUnitUtils with JUnit 4, JUnit5 tests and spock framework tests:
 
 [demonstrational-tests]: #demonstrational-tests
 ## Demonstrational tests
