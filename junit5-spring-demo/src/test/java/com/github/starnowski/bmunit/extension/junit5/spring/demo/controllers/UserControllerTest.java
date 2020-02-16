@@ -5,17 +5,14 @@ import com.github.starnowski.bmunit.extension.junit5.spring.demo.repositories.Us
 import org.jboss.byteman.contrib.bmunit.BMRule;
 import org.jboss.byteman.contrib.bmunit.BMRules;
 import org.jboss.byteman.contrib.bmunit.BMUnitConfig;
-import org.jboss.byteman.contrib.bmunit.WithByteman;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.web.client.RestTemplate;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
@@ -28,10 +25,9 @@ import static org.springframework.test.context.jdbc.Sql.ExecutionPhase.AFTER_TES
 import static org.springframework.test.context.jdbc.Sql.ExecutionPhase.BEFORE_TEST_METHOD;
 import static org.springframework.test.context.jdbc.SqlConfig.TransactionMode.ISOLATED;
 
-//import org.junit.Test;
-
-@WithByteman
-@ExtendWith(SpringExtension.class)
+//@WithByteman
+//@ExtendWith(SpringExtension.class)
+//@RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment=SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Sql(value = CLEAR_DATABASE_SCRIPT_PATH,
         config = @SqlConfig(transactionMode = ISOLATED),
@@ -39,7 +35,7 @@ import static org.springframework.test.context.jdbc.SqlConfig.TransactionMode.IS
 @Sql(value = CLEAR_DATABASE_SCRIPT_PATH,
         config = @SqlConfig(transactionMode = ISOLATED),
         executionPhase = AFTER_TEST_METHOD)
-@EnableAsync
+//@EnableAsync
 public class UserControllerTest {
 
 //    @Rule
@@ -48,7 +44,7 @@ public class UserControllerTest {
     @Autowired
     UserRepository userRepository;
     @Autowired
-    TestRestTemplate restTemplate;
+    TestRestTemplate testRestTemplate;
     @LocalServerPort
     private int port;
 
@@ -67,11 +63,12 @@ public class UserControllerTest {
         String expectedEmail = "szymon.doe@nosuch.domain.com";
         assertThat(userRepository.findByEmail(expectedEmail)).isNull();
         UserDto dto = new UserDto().setEmail(expectedEmail).setPassword("XXX");
+        RestTemplate restTemplate = new RestTemplate();
 //        createJoin("UserControllerTest.shouldCreateNewUserAndSendMailMessageInAsyncOperation", 1);
 //        assertEquals(0, greenMail.getReceivedMessages().length);
 
         // when
-        UserDto responseEntity = restTemplate.postForObject(new URI("http://localhost:" + port + "/users"), (Object) dto, UserDto.class);
+        UserDto responseEntity = restTemplate.postForObject(new URI("http://localhost:" + port + "/users/"), (Object) dto, UserDto.class);
 //        joinWait("UserControllerTest.shouldCreateNewUserAndSendMailMessageInAsyncOperation", 1, 15000);
 
         // then
