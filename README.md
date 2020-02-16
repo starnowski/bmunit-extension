@@ -25,6 +25,7 @@ Support of junit4 rule for the [bmunit](https://developer.jboss.org/wiki/BMUnitU
 Project contains junit4 rule which allows integration with [byteman](http://byteman.jboss.org/) framework and use it in junit and spock tests.
 Enables to use bmunit library in test executed by SpringRunner and Spock tests runner.
 It also contains types which allows to operate on mechanisms like counters, rendezvous, joins in the tests methods.
+Those types can also be used with the JUnit 5 library. Please read [how to use the "utils" module](#how-to-use-utils-module).
 
 [how-to-attach-project]: #how-to-attach-project
 # How to attach project
