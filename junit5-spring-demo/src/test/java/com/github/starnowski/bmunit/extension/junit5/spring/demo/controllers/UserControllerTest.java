@@ -9,8 +9,10 @@ import org.jboss.byteman.contrib.bmunit.BMRule;
 import org.jboss.byteman.contrib.bmunit.BMRules;
 import org.jboss.byteman.contrib.bmunit.BMUnitConfig;
 import org.jboss.byteman.contrib.bmunit.WithByteman;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.extension.RegisterExtension;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -54,7 +56,9 @@ public class UserControllerTest {
     @LocalServerPort
     private int port;
 
-    @Test
+    @DisplayName("Should send mail message after correct user sign-up and wait until the async operation which is e-mail sending is complete")
+    @ParameterizedTest(name = "{index}. expected e-mail is {0}")
+    @ValueSource(strings = {"szymon.doe@nosuch.domain.com", "john.doe@gmail.com","marry.doe@hotmail.com", "jack.black@aws.eu" })
     @BMUnitConfig(verbose = true, bmunitVerbose = true)
     @BMRules(rules = {
             @BMRule(name = "signal thread waiting for mutex \"UserControllerTest.shouldCreateNewUserAndSendMailMessageInAsyncOperation\"",
@@ -63,9 +67,8 @@ public class UserControllerTest {
                     targetLocation = "AT EXIT",
                     action = "joinEnlist(\"UserControllerTest.shouldCreateNewUserAndSendMailMessageInAsyncOperation\")")
     })
-    public void testShouldCreateNewUserAndSendMailMessageInAsyncOperation() throws IOException, URISyntaxException, MessagingException {
+    public void testShouldCreateNewUserAndSendMailMessageInAsyncOperation(String expectedEmail) throws IOException, URISyntaxException, MessagingException {
         // given
-        String expectedEmail = "szymon.doe@nosuch.domain.com";
         assertThat(userRepository.findByEmail(expectedEmail)).isNull();
         UserDto dto = new UserDto().setEmail(expectedEmail).setPassword("XXX");
         RestTemplate restTemplate = new RestTemplate();
