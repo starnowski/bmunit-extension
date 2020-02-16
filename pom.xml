@@ -21,12 +21,8 @@
                 <module>junit4-spock-spring-demo</module>
             </modules>
             <properties>
-                <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
                 <org.jboss.byteman.version>3.0.10</org.jboss.byteman.version>
                 <junit.junit.version>4.12</junit.junit.version>
-                <spock.core.version>1.1-groovy-2.4</spock.core.version>
-                <bmunit.extension.project.version>0.1.0</bmunit.extension.project.version>
-                <license.dir>${basedir}</license.dir>
             </properties>
         </profile>
         <profile>
@@ -34,15 +30,24 @@
             <modules>
                 <module>utils</module>
                 <module>junit5-utils-demo</module>
+                <!-- The "junit5-spring-demo" is not yet part of the "byteman4_compatible" profile because it has snapshot dependency to artifact "com.icegreen:greenmail-junit5".  -->
+                <!-- When the artifact "com.icegreen:greenmail-junit5" will be published in the final release and added to the project as test dependency, then the "junit5-spring-demo" module might be added to "byteman4_compatible" profile.  -->
+                <!-- If you would like to build the "junit5-spring-demo" then use the "junit5_spring_demo" profile.  -->
+<!--                <module>junit5-spring-demo</module>-->
+            </modules>
+            <properties>
+                <org.jboss.byteman.version>4.0.10</org.jboss.byteman.version>
+                <junit.junit.version>4.12</junit.junit.version>
+            </properties>
+        </profile>
+        <profile>
+            <id>junit5_spring_demo</id>
+            <modules>
                 <module>junit5-spring-demo</module>
             </modules>
             <properties>
-                <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
                 <org.jboss.byteman.version>4.0.10</org.jboss.byteman.version>
                 <junit.junit.version>4.12</junit.junit.version>
-                <spock.core.version>1.1-groovy-2.4</spock.core.version>
-                <bmunit.extension.project.version>0.1.0</bmunit.extension.project.version>
-                <license.dir>${basedir}</license.dir>
             </properties>
         </profile>
     </profiles>
@@ -59,8 +64,6 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <org.jboss.byteman.version>3.0.10</org.jboss.byteman.version>
-        <junit.junit.version>4.12</junit.junit.version>
         <spock.core.version>1.1-groovy-2.4</spock.core.version>
         <bmunit.extension.project.version>0.1.0</bmunit.extension.project.version>
         <license.dir>${basedir}</license.dir>
