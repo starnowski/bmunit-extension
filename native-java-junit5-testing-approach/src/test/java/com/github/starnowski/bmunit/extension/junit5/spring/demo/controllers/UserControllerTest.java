@@ -43,7 +43,7 @@ import static org.springframework.test.context.jdbc.SqlConfig.TransactionMode.IS
 public class UserControllerTest {
 
     @RegisterExtension
-    static GreenMailExtension greenMail = new GreenMailExtension(ServerSetup.verbose(ServerSetup.ALL)).withConfiguration(new GreenMailConfiguration().withUser("no.such.mail@gmail.com", "no.such.password"));
+    static GreenMailExtension greenMail = new GreenMailExtension(new ServerSetup(3025, (String)null, "smtp").setVerbose(true)).withConfiguration(new GreenMailConfiguration().withUser("no.such.mail@gmail.com", "no.such.password"));
     @Autowired
     UserRepository userRepository;
     @Autowired
