@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/starnowski/bmunit-extension.svg?branch=master)](https://travis-ci.org/starnowski/bmunit-extension)
 [![codecov](https://codecov.io/gh/starnowski/bmunit-extension/branch/master/graph/badge.svg)](https://codecov.io/gh/starnowski/bmunit-extension)
 [![Download](https://api.bintray.com/packages/starnowski/bmunit-extension/bmunit-extension/images/download.svg?version=1.0.1) ](https://bintray.com/starnowski/bmunit-extension/bmunit-extension/1.0.1/link)
+![Java Native Mechanisms Approach CI](https://github.com/starnowski/bmunit-extension/workflows/Java%20Native%20Mechanisms%20Approach%20CI/badge.svg)
 
 Support of junit4 rule for the [bmunit](https://developer.jboss.org/wiki/BMUnitUsingBytemanWithJUnitOrTestNGFromMavenAndAnt) library.
 
