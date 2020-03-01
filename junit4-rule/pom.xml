@@ -8,6 +8,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>junit4-rule</artifactId>
+    <name>junit4-rule</name>
+    <description>
+        The module contains the implementation of type "org.junit.rules.MethodRule" for the BMUnit library.
+    </description>
 
     <properties>
         <license.dir>${project.parent.basedir}</license.dir>
