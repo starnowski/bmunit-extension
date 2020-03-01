@@ -15,6 +15,24 @@
     <packaging>pom</packaging>
 
     <url>https://github.com/starnowski/bmunit-extension</url>
+    <name>bmunit-extension</name>
+    <description>
+        The BMUnit-extension is a project which extends the BMUnit library with integration with JUnit library with version 4 and 5.
+        It also allows using the BMUnit library with Spock framework.
+    </description>
+
+    <licenses>
+        <license>
+            <name>LGPL 2.1</name>
+            <url>http://www.gnu.org/licenses/lgpl-2.1.html</url>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <name>Szymon Tarnowski</name>
+            <url>www.linkedin.com/in/szymon-tarnowski-a104b4150</url>
+        </developer>
+    </developers>
 
     <issueManagement>
         <url>https://github.com/starnowski/bmunit-extension/issues</url>
