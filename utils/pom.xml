@@ -8,6 +8,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>utils</artifactId>
+    <name>utils</name>
+    <description>
+        The module contains utils methods and types, useful with JUnit and Spock tests, which use the BMUnit library.
+    </description>
 
     <properties>
         <license.dir>${project.parent.basedir}</license.dir>
