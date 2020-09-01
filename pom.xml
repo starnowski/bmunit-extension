@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.github.starnowski.bmunit.extension</groupId>
@@ -62,6 +64,26 @@
         </profile>
     </profiles>
 
+    <url>https://github.com/starnowski/bmunit-extension</url>
+    <name>bmunit-extension</name>
+    <description>
+        The BMUnit-extension is a project which extends the BMUnit library with integration with JUnit library with version 4 and 5.
+        It also allows using the BMUnit library with Spock framework.
+    </description>
+
+    <licenses>
+        <license>
+            <name>LGPL 2.1</name>
+            <url>http://www.gnu.org/licenses/lgpl-2.1.html</url>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <name>Szymon Tarnowski</name>
+            <url>www.linkedin.com/in/szymon-tarnowski-a104b4150</url>
+        </developer>
+    </developers>
+
     <issueManagement>
         <url>https://github.com/starnowski/bmunit-extension/issues</url>
         <system>GitHub Issues</system>
@@ -123,7 +145,6 @@
                         </reports>
                     </reportSet>
                 </reportSets>
-
             </plugin>
         </plugins>
     </reporting>
@@ -155,7 +176,7 @@
                     <artifactId>cobertura-maven-plugin</artifactId>
                     <version>2.7</version>
                     <configuration>
-                        <check />
+                        <check/>
                         <formats>
                             <format>html</format>
                             <format>xml</format>
@@ -214,6 +235,50 @@
                         </dependency>
                     </dependencies>
                 </plugin>
+                <plugin>
+                    <groupId>com.mycila.maven-license-plugin</groupId>
+                    <artifactId>maven-license-plugin</artifactId>
+                    <version>1.10.b1</version>
+                    <configuration>
+                        <header>${license.dir}/license.txt</header>
+                        <properties>
+                            <project>${project.name}</project>
+                            <founder>${project.organization.name}</founder>
+                            <year>${project.inceptionYear}</year>
+                        </properties>
+                        <includes>
+                            <include>src/main/java/**</include>
+                        </includes>
+                        <excludes>
+                            <exclude>**/package-info.java</exclude>
+                        </excludes>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>format</goal>
+                            </goals>
+                            <phase>process-sources</phase>
+                        </execution>
+                    </executions>
+                    <dependencies>
+                        <dependency>
+                            <groupId>com.mycila</groupId>
+                            <artifactId>licenses</artifactId>
+                            <version>1</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>3.7.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-project-info-reports-plugin</artifactId>
+                    <version>3.0.0</version>
+                </plugin>
             </plugins>
         </pluginManagement>
     </build>
@@ -225,5 +290,38 @@
             <url>https://api.bintray.com/maven/starnowski/bmunit-extension/bmunit-extension/;publish=1</url>
         </repository>
     </distributionManagement>
+
+    <profiles>
+        <profile>
+            <id>sign-artifacts</id>
+            <properties>
+                <gpg.executable>gpg</gpg.executable>
+                <gpg.keyname>${env.GPG_KEYNAME}</gpg.keyname>
+                <gpg.passphrase>${env.GPG_PASSPHRASE}</gpg.passphrase>
+                <gpg.defaultKeyring>false</gpg.defaultKeyring>
+                <gpg.publicKeyring>${env.GPG_DIR}/pubring.gpg</gpg.publicKeyring>
+                <gpg.secretKeyring>${env.GPG_DIR}/secring.gpg</gpg.secretKeyring>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.5</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
 
 </project>
