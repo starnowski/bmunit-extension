@@ -4,7 +4,7 @@
 
     <groupId>com.github.starnowski.bmunit.extension</groupId>
     <artifactId>parent</artifactId>
-    <version>1.0.3</version>
+    <version>1.0.4-SNAPSHOT</version>
     <modules>
         <module>junit4-rule</module>
         <module>utils</module>
