@@ -10,9 +10,6 @@ Support of junit4 rule for the [bmunit](https://developer.jboss.org/wiki/BMUnitU
 
 * [Introduction](#introduction)
 * [How to attach project](#how-to-attach-project)
-  * [Add maven repository](#add-maven-repository)
-    * [Repository in pom](#repository-in-pom)
-    * [Repository in settings](#repository-in-settings)
   * [Dependencies for "junit4-rule"](#dependencies-for-junit4-rule)
   * [Dependencies for "utils"](#dependencies-for-utils)
   * [Build project](#build-project)
@@ -20,7 +17,7 @@ Support of junit4 rule for the [bmunit](https://developer.jboss.org/wiki/BMUnitU
   * [How to use "junit4-rule" module](#how-to-use-junit4-rule-module)
   * [How to use  "utils" module](#how-to-use-utils-module)
   * [Demonstrational tests](#demonstrational-tests)
-* [Other maven repositories](#other-maven-repositories)
+* [Other maven repositories](https://github.com/starnowski/bmunit-extension/wiki/Maven-repositories)
 * [Issues](#issues)
 
 # Introduction
@@ -31,80 +28,6 @@ Those types can also be used with the JUnit 5 library. Please read [how to use t
 
 [how-to-attach-project]: #how-to-attach-project
 # How to attach project
-
-[add-maven-repository]:(#add-maven-repository)
-## Add maven repository
-Project is published in [Bintray](https://bintray.com/starnowski/bmunit-extension/bmunit-extension) repository.
-To download dependencies it is required to add information about repository in "pom.xml" file.
-Project is also available from [other](#other-maven-repositories) repositories.
-
-[repository-in-pom]:(#repository-in-pom)
-###### Repository in pom
-```xml
-<project>
-...
-    <repositories>
-        <repository>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <id>bintray-starnowski-bmunit-extension</id>
-            <name>bintray</name>
-            <url>https://dl.bintray.com/starnowski/bmunit-extension</url>
-        </repository>
-    </repositories>
-    <pluginRepositories>
-        <pluginRepository>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <id>bintray-starnowski-bmunit-extension</id>
-            <name>bintray-plugins</name>
-            <url>https://dl.bintray.com/starnowski/bmunit-extension</url>
-        </pluginRepository>
-    </pluginRepositories>
-...
-</project>
-```
-Or add this information in maven "settings.xml" file.
-
-[repository-in-settings]:(#repository-in-settings)
-###### Repository in settings
-```xml
-<?xml version="1.0" encoding="UTF-8" ?>
-<settings xsi:schemaLocation='http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd'
-          xmlns='http://maven.apache.org/SETTINGS/1.0.0' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>
-    
-    <profiles>
-        <profile>
-            <repositories>
-                <repository>
-                    <snapshots>
-                        <enabled>false</enabled>
-                    </snapshots>
-                    <id>bintray-starnowski-bmunit-extension</id>
-                    <name>bintray</name>
-                    <url>https://dl.bintray.com/starnowski/bmunit-extension</url>
-                </repository>
-            </repositories>
-            <pluginRepositories>
-                <pluginRepository>
-                    <snapshots>
-                        <enabled>false</enabled>
-                    </snapshots>
-                    <id>bintray-starnowski-bmunit-extension</id>
-                    <name>bintray-plugins</name>
-                    <url>https://dl.bintray.com/starnowski/bmunit-extension</url>
-                </pluginRepository>
-            </pluginRepositories>
-            <id>bintray</id>
-        </profile>
-    </profiles>
-    <activeProfiles>
-        <activeProfile>bintray</activeProfile>
-    </activeProfiles>
-</settings>
-```
 
 [dependencies-for-junit4-rule]: #dependencies-for-junit4-rule
 ## Dependencies for "junit4-rule"
@@ -128,8 +51,6 @@ Or add this information in maven "settings.xml" file.
             <scope>test</scope>
         </dependency>
 ```
->To add module "com.github.starnowski.bmunit.extension:junit4-rule" as dependency in local maven repository, attach [repository](#add-maven-repository) information
-or [build project](#build-project) locally. 
 
 [dependencies-for-utils]: #dependencies-for-utils
 ## Dependencies for "utils"
@@ -159,8 +80,6 @@ or [build project](#build-project) locally.
             <scope>test</scope>
         </dependency>
 ```
->To add module "com.github.starnowski.bmunit.extension:utils" as dependency in local maven repository, attach [repository](#add-maven-repository) information
-or [build project](#build-project) locally. 
 
 [build-project]: #build-project 
 ## Build project
@@ -208,45 +127,6 @@ The module was also tested for compatibility with the Byteman in version 4.10.0.
   * [Spock test with SpringRunner which use restTemplate component and "joins" mechanism](https://github.com/starnowski/bmunit-extension/blob/master/junit4-spock-spring-demo/src/test/groovy/com/github/starnowski/bmunit/extension/junit4/spock/spring/demo/controllers/UserControllerSpockItTest.groovy)
   * [JUnit5 test which use restTemplate component and "joins" mechanism](https://github.com/starnowski/bmunit-extension/blob/master/junit5-spring-demo/src/test/java/com/github/starnowski/bmunit/extension/junit5/spring/demo/controllers/UserControllerTest.java)
 
-[other-maven-repositories]:(#other-maven-repositories)
-## Other maven repositories
-Project is also published in [jcenter](https://bintray.com/bintray/jcenter) repository.
-To use it you have to attach repository in project descriptor or the maven settings.
-```xml
-<?xml version="1.0" encoding="UTF-8" ?>
-<settings xsi:schemaLocation='http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd'
-          xmlns='http://maven.apache.org/SETTINGS/1.0.0' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>
-    
-    <profiles>
-        <profile>
-            <repositories>
-                <repository>
-                    <snapshots>
-                        <enabled>false</enabled>
-                    </snapshots>
-                    <id>central</id>
-                    <name>bintray</name>
-                    <url>https://jcenter.bintray.com</url>
-                </repository>
-            </repositories>
-            <pluginRepositories>
-                <pluginRepository>
-                    <snapshots>
-                        <enabled>false</enabled>
-                    </snapshots>
-                    <id>central</id>
-                    <name>bintray-plugins</name>
-                    <url>https://jcenter.bintray.com</url>
-                </pluginRepository>
-            </pluginRepositories>
-            <id>bintray</id>
-        </profile>
-    </profiles>
-    <activeProfiles>
-        <activeProfile>bintray</activeProfile>
-    </activeProfiles>
-</settings>
-```
 # Issues
 * If you facing any issues related with project usage please check on [wiki page](https://github.com/starnowski/bmunit-extension/wiki/FAQ
 ) if there is already a solution for your problem
