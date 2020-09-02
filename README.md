@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/starnowski/bmunit-extension.svg?branch=master)](https://travis-ci.org/starnowski/bmunit-extension)
 [![codecov](https://codecov.io/gh/starnowski/bmunit-extension/branch/master/graph/badge.svg)](https://codecov.io/gh/starnowski/bmunit-extension)
 [![Download](https://api.bintray.com/packages/starnowski/bmunit-extension/bmunit-extension/images/download.svg?version=1.0.1) ](https://bintray.com/starnowski/bmunit-extension/bmunit-extension/1.0.1/link)
+[![Maven Central](https://img.shields.io/maven-central/v/com.github.starnowski.bmunit.extension/junit4-rule.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.starnowski.bmunit.extension%22%20AND%20a:%22junit4-rule%22)
 
 Support of junit4 test rule to [bmunit](https://developer.jboss.org/wiki/BMUnitUsingBytemanWithJUnitOrTestNGFromMavenAndAnt) framework.
 
