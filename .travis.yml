@@ -8,7 +8,7 @@ jobs:
       language: java
       jdk:
         - oraclejdk8
-      sudo: false
+      sudo: true
       cache:
         directories:
           - $HOME/.m2
@@ -19,7 +19,7 @@ jobs:
       language: java
       jdk:
         - oraclejdk8
-      sudo: false
+      sudo: true
       cache:
         directories:
           - $HOME/.m2
