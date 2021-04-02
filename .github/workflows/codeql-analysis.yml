@@ -13,7 +13,8 @@ name: "CodeQL"
 
 on:
   push:
-    branches: [ master ]
+#    branches: [ master ]
+#Temporary path for testing
     paths:
       - '.github/workflows/codeql-analysis.yml'
   pull_request:
