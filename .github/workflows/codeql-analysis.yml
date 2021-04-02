@@ -14,6 +14,8 @@ name: "CodeQL"
 on:
   push:
     branches: [ master ]
+    paths:
+      - '.github/workflows/codeql-analysis.yml'
   pull_request:
     # The branches below must be a subset of the branches above
     branches: [ master ]
@@ -36,6 +38,11 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
+
+    - name: Setup Java JDK
+      uses: actions/setup-java@v1.3.0
+      with:
+        java-version: 8
 
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL
