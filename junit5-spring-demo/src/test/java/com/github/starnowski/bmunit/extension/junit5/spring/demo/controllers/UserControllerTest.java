@@ -5,6 +5,7 @@ import com.github.starnowski.bmunit.extension.junit5.spring.demo.repositories.Us
 import com.icegreen.greenmail.configuration.GreenMailConfiguration;
 import com.icegreen.greenmail.junit5.GreenMailExtension;
 import com.icegreen.greenmail.util.ServerSetup;
+import com.icegreen.greenmail.util.ServerSetupTest;
 import org.jboss.byteman.contrib.bmunit.BMRule;
 import org.jboss.byteman.contrib.bmunit.BMRules;
 import org.jboss.byteman.contrib.bmunit.BMUnitConfig;
@@ -48,7 +49,7 @@ import static org.springframework.test.context.jdbc.SqlConfig.TransactionMode.IS
 public class UserControllerTest {
 
     @RegisterExtension
-    static GreenMailExtension greenMail = new GreenMailExtension(ServerSetup.verbose(ServerSetup.ALL)).withConfiguration(new GreenMailConfiguration().withUser("no.such.mail@gmail.com", "no.such.password"));
+    static GreenMailExtension greenMail = new GreenMailExtension(ServerSetup.verbose(ServerSetupTest.ALL)).withConfiguration(new GreenMailConfiguration().withUser("no.such.mail@gmail.com", "no.such.password"));
     @Autowired
     UserRepository userRepository;
     @Autowired

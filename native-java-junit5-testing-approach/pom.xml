@@ -58,9 +58,7 @@
         <dependency>
             <groupId>com.icegreen</groupId>
             <artifactId>greenmail-junit5</artifactId>
-            <!-- The greenmail-junit5 artifact is planned to be published in release 1.6.0  -->
-            <!-- https://github.com/greenmail-mail-test/greenmail/issues/280 -->
-            <version>1.6.0-SNAPSHOT</version>
+            <version>1.6.3</version>
             <scope>test</scope>
         </dependency>
         <dependency>
