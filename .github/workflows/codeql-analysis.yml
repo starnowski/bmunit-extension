@@ -14,6 +14,9 @@ name: "CodeQL"
 on:
   push:
     branches: [ master ]
+#Temporary path for testing
+#    paths:
+#      - '.github/workflows/codeql-analysis.yml'
   pull_request:
     # The branches below must be a subset of the branches above
     branches: [ master ]
@@ -24,6 +27,8 @@ jobs:
   analyze:
     name: Analyze
     runs-on: ubuntu-latest
+    env:
+      ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 
     strategy:
       fail-fast: false
@@ -36,6 +41,11 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
+
+    - name: Setup Java JDK
+      uses: actions/setup-java@v1.3.0
+      with:
+        java-version: 8
 
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL
