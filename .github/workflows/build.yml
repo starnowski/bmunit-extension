@@ -26,3 +26,17 @@ jobs:
           java-version: 1.8
       - name: Build with Maven
         run: mvn clean install
+  publish:
+    name: "Publish to the Maven Central Repository"
+    needs: [integration_tests]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        if: startsWith(github.ref, 'refs/tags/v')
+      - name: Publish to the Maven Central Repository
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: .travis/release.sh
+        env:
+          MAVEN_USERNAME: ${{ secrets.BMUNIT_EXT_MAVEN_USERNAME }}
+          MAVEN_PASSWORD: ${{ secrets.BMUNIT_EXT_MAVEN_PASSWORD }}
+          ENCRYPTION_PASSWORD: ${{ secrets.BMUNIT_EXT_ENCRYPTION_PASSWORD }}
