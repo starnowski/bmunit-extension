@@ -32,3 +32,6 @@ modules.xml
 #maven
 target/*
 */target/*
+
+#maven deploy
+*.gpg
