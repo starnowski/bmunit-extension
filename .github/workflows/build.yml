@@ -37,8 +37,8 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/v')
         run: .travis/release.sh
         env:
-          MAVEN_USERNAME: ${{ secrets.BMUNIT_EXT_MAVEN_USERNAME }}
-          MAVEN_PASSWORD: ${{ secrets.BMUNIT_EXT_MAVEN_PASSWORD }}
-          ENCRYPTION_PASSWORD: ${{ secrets.BMUNIT_EXT_ENCRYPTION_PASSWORD }}
-          GPG_KEYNAME: ${{ secrets.BMUNIT_EXT_GPG_KEYNAME }}
-          GPG_PASSPHRASE: ${{ secrets.BMUNIT_EXT_GPG_PASSPHRASE }}
+          MAVEN_USERNAME: '${{ secrets.BMUNIT_EXT_MAVEN_USERNAME }}'
+          MAVEN_PASSWORD: '${{ secrets.BMUNIT_EXT_MAVEN_PASSWORD }}'
+          ENCRYPTION_PASSWORD: '${{ secrets.BMUNIT_EXT_ENCRYPTION_PASSWORD }}'
+          GPG_KEYNAME: '${{ secrets.BMUNIT_EXT_GPG_KEYNAME }}'
+          GPG_PASSPHRASE: '${{ secrets.BMUNIT_EXT_GPG_PASSPHRASE }}'
