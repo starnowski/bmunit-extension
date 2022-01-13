@@ -13,7 +13,7 @@ jobs:
       with:
         java-version: 1.8
     - name: Build with Maven
-      run: mvn clean install -P !main,byteman4_compatible
+      run: ./mvnw clean install -P !main,byteman4_compatible
   integration_tests:
     needs: [build]
     name: "Integration tests"
@@ -25,7 +25,7 @@ jobs:
         with:
           java-version: 1.8
       - name: Build with Maven
-        run: mvn clean install
+        run: ./mvnw clean install
   publish:
     name: "Publish to the Maven Central Repository"
     needs: [integration_tests]

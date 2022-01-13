@@ -12,7 +12,7 @@ jobs:
       cache:
         directories:
           - $HOME/.m2
-      script: mvn clean install -P !main,byteman4_compatible
+      script: ./mvnw clean install -P !main,byteman4_compatible
       dist: trusty
 
     - stage: "integration tests"
@@ -23,7 +23,7 @@ jobs:
       cache:
         directories:
           - $HOME/.m2
-      script: mvn clean install
+      script: ./mvnw clean install
       dist: trusty
 
       after_success:
