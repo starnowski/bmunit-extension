@@ -82,6 +82,11 @@
                 <gpg.defaultKeyring>false</gpg.defaultKeyring>
                 <gpg.publicKeyring>${env.GPG_DIR}/pubring.gpg</gpg.publicKeyring>
                 <gpg.secretKeyring>${env.GPG_DIR}/secring.gpg</gpg.secretKeyring>
+                <!-- Prevent gpg from using pinentry programs -->
+                <gpgArguments>
+                    <arg>--pinentry-mode</arg>
+                    <arg>loopback</arg>
+                </gpgArguments>
             </properties>
             <build>
                 <plugins>
