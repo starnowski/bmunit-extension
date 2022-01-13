@@ -13,5 +13,4 @@ openssl aes-256-cbc -pass pass:$ENCRYPTION_PASSWORD -md md5 -in $GPG_DIR/secring
 
 gpg --batch --yes --pinentry-mode loopback --import $GPG_DIR/secring.gpg
 
-#mvn --settings .travis/settings.xml -DskipTests deploy -P sign-artifacts
-mvn clean install -DskipTests -P sign-artifacts -P main
+mvn --settings .travis/settings.xml -DskipTests deploy -P sign-artifacts
