@@ -18,7 +18,7 @@
         <org.jboss.byteman.version>3.0.10</org.jboss.byteman.version>
         <bmunit.extension.project.version>1.2.0-SNAPSHOT</bmunit.extension.project.version>
         <spock.core.version>1.1-groovy-2.4</spock.core.version>
-        <h2.version>2.0.206</h2.version>
+        <h2.version>2.1.210</h2.version>
     </properties>
 
     <dependencies>
